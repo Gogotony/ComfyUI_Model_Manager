@@ -11,7 +11,7 @@
 
 > 🌏 [繁體中文說明 (Traditional Chinese)](README_zh-TW.md)
 
-![ComfyUI Model Manager](ComfyUI_Model_Manager.png)
+![ComfyUI Model Manager](ComfyUI_Model_Manager_En.png)
 
 ![Main interface (Chinese)](screenshots/screenshot-zh.png)
 

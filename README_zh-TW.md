@@ -11,7 +11,7 @@
 
 > 🌏 [English README](README.md)
 
-![ComfyUI Model Manager 封面](screenshots/cover-zh.png)
+![ComfyUI Model Manager 封面](ComfyUI_Model_Manager_Zh.png)
 
 ![中文主介面](screenshots/screenshot-zh.png)
 
