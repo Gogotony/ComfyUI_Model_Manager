@@ -1,0 +1,466 @@
+{
+ "Audio Generation (Stable Audio 3 Medium Base)": {
+  "en": "Generates music, instrument loops, sound effects, and one-shots from text using the Stable Audio 3 Medium base checkpoint, with optional Qwen 3.5 category-based prompt expansion (Music, Instrument, SFX, One-shot).",
+  "zh": "使用 Stable Audio 3 Medium base 模型，依文字產生音樂、樂器循環、音效與單發音效，可選用 Qwen 3.5 依類別擴充提示詞（音樂、樂器、音效、單發）。"
+ },
+ "Audio Generation (Stable Audio 3 Medium)": {
+  "en": "Generates music, instrument loops, sound effects, and one-shots from text using Stable Audio 3 Medium, with optional Qwen 3.5 category-based prompt expansion (Music, Instrument, SFX, One-shot).",
+  "zh": "使用 Stable Audio 3 Medium 模型，依文字產生音樂、樂器循環、音效與單發音效，可選用 Qwen 3.5 依類別擴充提示詞（音樂、樂器、音效、單發）。"
+ },
+ "Brightness and Contrast": {
+  "en": "Adjusts image brightness and contrast using a real-time GPU fragment shader.",
+  "zh": "透過即時 GPU 片段著色器調整影像的亮度與對比度。"
+ },
+ "Canny to Image (Z-Image-Turbo)": {
+  "en": "Generates an image from a Canny edge map using Z-Image-Turbo, with text conditioning.",
+  "zh": "使用 Z-Image-Turbo 搭配文字條件，從 Canny 邊緣圖產生影像。"
+ },
+ "Canny to Video (LTX 2.0)": {
+  "en": "Generates video from Canny edge maps using LTX-2, with optional synchronized audio.",
+  "zh": "使用 LTX-2 從 Canny 邊緣圖產生影片，可選同步音訊。"
+ },
+ "Character Replacement (SCAIL-2 Base)": {
+  "en": "Replaces a character in a video with a reference image using the SCAIL-2 model for end-to-end controlled animation without intermediate pose maps. Key inputs include a source video, a reference character image, and optional text prompts for style or context. Suitable for animated or live-action footage, multi-character scenes, and creative video editing where direct pose-free animation is needed; works best with moderate-length videos.",
+  "zh": "使用 SCAIL-2 模型，以參考圖替換影片中的角色，進行端到端控制動畫，無需中間姿態圖。主要輸入包含來源影片、角色參考圖，以及可選的風格或情境文字提示。適合動畫或真人素材、多角色場景，以及需要直接免姿態動畫的創意影片編輯；最適合中等長度的影片。"
+ },
+ "Character Replacement (SCAIL-2 Extend)": {
+  "en": "Replaces a character in a video with a reference image using the SCAIL-2 model for end-to-end controlled animation without intermediate pose maps. Key inputs include a source video, a reference character image, and optional text prompts for style or context. Suitable for animated or live-action footage, multi-character scenes, and creative video editing where direct pose-free animation is needed; works best with moderate-length videos.",
+  "zh": "使用 SCAIL-2 模型，以參考圖替換影片中的角色，進行端到端控制動畫，無需中間姿態圖。主要輸入包含來源影片、角色參考圖，以及可選的風格或情境文字提示。適合動畫或真人素材、多角色場景，以及需要直接免姿態動畫的創意影片編輯；最適合中等長度的影片。"
+ },
+ "Character Replacement (SCAIL-2 Int8 Base)": {
+  "en": "Replaces a character in a video with a reference image using the INT8 SCAIL-2 checkpoint for end-to-end animation without intermediate pose maps.",
+  "zh": "使用 INT8 量化版 SCAIL-2 模型，以參考圖替換影片中的角色，進行無中間姿態圖的端到端動畫。"
+ },
+ "Chromatic Aberration": {
+  "en": "Adds lens-style chromatic aberration (color fringing) using a real-time GPU fragment shader.",
+  "zh": "透過即時 GPU 片段著色器加入鏡頭式色差（顏色邊緣）。"
+ },
+ "Color Adjustment": {
+  "en": "Adjusts saturation, temperature, tint, and vibrance using a real-time GPU fragment shader.",
+  "zh": "透過即時 GPU 片段著色器調整飽和度、色溫、色調與鮮豔度。"
+ },
+ "Color Balance": {
+  "en": "Balances colors across shadows, midtones, and highlights using a real-time GPU fragment shader.",
+  "zh": "透過即時 GPU 片段著色器，在陰影、中間調與亮部之間平衡色彩。"
+ },
+ "Color Curves": {
+  "en": "Fine-tunes tone and color with per-channel curve adjustments using a real-time GPU fragment shader.",
+  "zh": "透過即時 GPU 片段著色器，以逐通道曲線調整精細微調色調與色彩。"
+ },
+ "Control to Image (Anima LLLite)": {
+  "en": "Generates anime-style images from a control image using Anima with an LLLite patch for structure-guided generation.",
+  "zh": "使用 Anima 搭配 LLLite 補丁，從控制圖產生動畫風格影像，進行結構引導生成。"
+ },
+ "ControlNet (Z-Image-Turbo)": {
+  "en": "Generates images from a text prompt and ControlNet conditioning (e.g. depth, canny) using Z-Image-Turbo.",
+  "zh": "使用 Z-Image-Turbo，從文字提示與 ControlNet 條件（如深度、Canny）產生影像。"
+ },
+ "Crop Images 2x2": {
+  "en": "Splits an image into a 2×2 grid of four equal tiles.",
+  "zh": "將影像分割成 2×2 共四等分的方格。"
+ },
+ "Crop Images 3x3": {
+  "en": "Splits an image into a 3×3 grid of nine equal tiles.",
+  "zh": "將影像分割成 3×3 共九等分的方格。"
+ },
+ "Depth to Image (Z-Image-Turbo)": {
+  "en": "Estimates a monocular depth map from an input image using the Lotus depth estimation model.",
+  "zh": "使用 Lotus 深度估計模型，從輸入影像估計單眼深度圖。"
+ },
+ "Depth to Video (ltx 2.0)": {
+  "en": "Generates depth-controlled video with LTX-2: motion and structure follow a depth-reference video alongside text prompting, optional first-frame image conditioning, with optional synchronized audio.",
+  "zh": "使用 LTX-2 產生深度控制的影片：動作與結構跟隨深度參考影片，搭配文字提示與可選首幀影像條件，可再選同步音訊。"
+ },
+ "Edge-Preserving Blur": {
+  "en": "Applies bilateral (edge-preserving) blur to soften images while retaining detail.",
+  "zh": "套用雙邊（保留邊緣）模糊，柔化影像同時保留細節。"
+ },
+ "Edit Image (Boogu Image Edit)": {
+  "en": "Edits images from text instructions using Boogu-Image-0.1-Edit and TextEncodeBooguEdit, preserving reference identity via dual conditioning.",
+  "zh": "使用 Boogu-Image-0.1-Edit 與 TextEncodeBooguEdit，依文字指令編輯影像，透過雙重條件保留參考身分。"
+ },
+ "Film Grain": {
+  "en": "Adds procedural film grain texture for a cinematic look via GPU fragment shader.",
+  "zh": "透過 GPU 片段著色器加入程序化底片顆粒質感，呈現電影感。"
+ },
+ "First & Last Frame to Video (LTX-2.5)": {
+  "en": "Generates a video interpolating between first and last keyframes using LTX-2.5, with optional prompt enhancement and synchronized audio.",
+  "zh": "使用 LTX-2.5 在首幀與末幀之間插值產生影片，可選提示詞增強與同步音訊。"
+ },
+ "First-Last-Frame to Video (LTX-2.3)": {
+  "en": "Generates a video interpolating between first and last keyframes using LTX-2.3.",
+  "zh": "使用 LTX-2.3 在首幀與末幀之間插值產生影片。"
+ },
+ "First-Last-Frame to Video": {
+  "en": "Generates a video that interpolates between the first and last keyframes using LTX-2.3, including optional audio.",
+  "zh": "使用 LTX-2.3 在首幀與末幀之間插值產生影片，可包含可選音訊。"
+ },
+ "FLF2V (Wan2.1 VACE)": {
+  "en": "Generates a video interpolating between first and last keyframes using Wan 2.1 VACE, with optional Lightning LoRA turbo mode.",
+  "zh": "使用 Wan 2.1 VACE 在首幀與末幀之間插值產生影片，可選 Lightning LoRA 加速模式。"
+ },
+ "Frame Interpolation": {
+  "en": "Increases video frame rate by synthesizing intermediate frames with a frame interpolation model.",
+  "zh": "使用幀插值模型合成中間幀，提高影片幀率。"
+ },
+ "Geometry Estimation (MoGe)": {
+  "en": "Estimates 3D scene geometry from an input image using MoGe, outputting a mesh plus OpenGL and DirectX normal maps.",
+  "zh": "使用 MoGe 從輸入影像估計 3D 場景幾何，輸出網格以及 OpenGL 與 DirectX 法線貼圖。"
+ },
+ "Get Any Video Frame": {
+  "en": "Extracts one image frame from a video at a chosen index, with optional trim and FPS control.",
+  "zh": "從影片中依指定索引抽取一幀影像，可選裁剪與 FPS 控制。"
+ },
+ "Glow": {
+  "en": "Adds a glow/bloom effect around bright image areas via GPU fragment shader.",
+  "zh": "透過 GPU 片段著色器在影像亮部周圍加入光暈／泛光效果。"
+ },
+ "Hue and Saturation": {
+  "en": "Adjusts hue, saturation, and lightness of an image using a real-time GPU fragment shader.",
+  "zh": "透過即時 GPU 片段著色器調整影像的色相、飽和度與亮度。"
+ },
+ "Image Albedo Estimation (Marigold V2)": {
+  "en": "Estimates albedo from an input image using Marigold V2, separating surface color from lighting and shading for relighting and 3D asset work.",
+  "zh": "使用 Marigold V2 從輸入影像估計反照率，將表面顏色與光照陰影分離，用於重新打光與 3D 資產製作。"
+ },
+ "Image Blur": {
+  "en": "Applies Gaussian, Box, or Radial blur to soften images and create stylized depth or motion effects.",
+  "zh": "套用高斯、方框或徑向模糊，柔化影像並產生風格化的景深或動態效果。"
+ },
+ "Image Captioning (gemini)": {
+  "en": "Generates descriptive captions for images using Google's Gemini multimodal LLM.",
+  "zh": "使用 Google Gemini 多模態大語言模型為影像產生描述性說明文字。"
+ },
+ "Image Channels": {
+  "en": "Manipulates individual RGBA channels for masking, compositing, and channel effects.",
+  "zh": "操作個別 RGBA 通道，用於遮罩、合成與通道效果。"
+ },
+ "Image Depth Estimation (Depth Anything 3)": {
+  "en": "This subgraph takes an input image and produces a depth map using the Depth Anything 3 model, which recovers spatially consistent geometry from any number of views. It is ideal for single or multi-view images, videos, and 3D scenes where accurate depth estimation is needed for tasks like SLAM, novel view synthesis, or spatial perception. The model uses a plain transformer backbone and supports both monocular and multi-view inputs without.",
+  "zh": "此子圖使用 Depth Anything 3 模型，將輸入影像轉為深度圖，能從任意數量視圖還原空間一致的幾何。適合需要精確深度估計的單視圖或多視圖影像、影片與 3D 場景，例如 SLAM、新視角合成或空間感知等任務。模型使用純 transformer 骨架，支援單眼與多視圖輸入。"
+ },
+ "Image Depth Estimation (Lotus Depth)": {
+  "en": "Estimates a monocular depth map from an input image using the Lotus depth estimation model.",
+  "zh": "使用 Lotus 深度估計模型，從輸入影像估計單眼深度圖。"
+ },
+ "Image Depth Estimation (Marigold V2)": {
+  "en": "Estimates scene depth from an input image using Marigold V2, producing a depth map with brighter areas closer and darker areas farther.",
+  "zh": "使用 Marigold V2 從輸入影像估計場景深度，產生深度圖：亮部較近、暗部較遠。"
+ },
+ "Image Depth Estimation (MoGe)": {
+  "en": "Estimates monocular depth from an input image using MoGe, outputting both raw and colorized depth maps plus a mask.",
+  "zh": "使用 MoGe 從輸入影像估計單眼深度，輸出原始與彩色化深度圖以及遮罩。"
+ },
+ "Image Edit (Bernini-R)": {
+  "en": "Edits a single image using a text prompt, leveraging Bernini-R's latent semantic planning for changes like object addition, removal, or style transfer. Ideal for creative edits requiring precise semantic understanding, such as adding a snowman to a scene or altering an object's appearance.",
+  "zh": "使用文字提示編輯單張影像，運用 Bernini-R 的潛在語意規劃進行物件新增、移除或風格轉換。適合需要精確語意理解的創意編輯，例如在場景中加入雪人或改變物件外觀。"
+ },
+ "Image Edit (FireRed Image Edit 1.1)": {
+  "en": "Edits images via text instructions using FireRed Image Edit 1.1, a diffusion-based instruction-following editing model.",
+  "zh": "使用 FireRed Image Edit 1.1（基於擴散的指令跟隨編輯模型）依文字指令編輯影像。"
+ },
+ "Image Edit (Flux.2 Dev)": {
+  "en": "Edits an image from text instructions using Flux.2 [dev], with guidance, schedulers, and optional Turbo LoRAs.",
+  "zh": "使用 Flux.2 [dev] 依文字指令編輯影像，支援引導強度、排程器與可選 Turbo LoRA。"
+ },
+ "Image Edit (Flux.2 Klein 4B)": {
+  "en": "Applies reference image conditioning for style/identity transfer (Flux.2 Klein 4B).",
+  "zh": "使用 Flux.2 Klein 4B 套用參考影像條件，進行風格／身分轉換。"
+ },
+ "Image Edit (Joy Image Edit)": {
+  "en": "Edits images via text instructions using Joy Image Edit, with optional extra reference images for multi-image conditioning.",
+  "zh": "使用 Joy Image Edit 依文字指令編輯影像，可選額外參考影像進行多圖條件控制。"
+ },
+ "Image Edit (LongCat Image Edit)": {
+  "en": "Edits images via text instructions using LongCat Image Edit, an instruction-following image editing diffusion model.",
+  "zh": "使用 LongCat Image Edit（指令跟隨的影像編輯擴散模型）依文字指令編輯影像。"
+ },
+ "Image Edit (Mage-Flow-Edit Turbo)": {
+  "en": "Edits images from natural-language instructions using Microsoft Mage-Flow-Edit Turbo, a distilled 4-step checkpoint.",
+  "zh": "使用微軟 Mage-Flow-Edit Turbo（蒸餾 4 步檢查點）依自然語言指令編輯影像。"
+ },
+ "Image Edit (Mage-Flow-Edit)": {
+  "en": "Edits images from natural-language instructions using Microsoft Mage-Flow-Edit, supporting up to three reference images.",
+  "zh": "使用微軟 Mage-Flow-Edit 依自然語言指令編輯影像，支援最多三張參考影像。"
+ },
+ "Image Edit (Qwen 2509)": {
+  "en": "Edits images from text instructions using Qwen-Image-Edit-2509 with optional Lightning LoRA for few-step sampling.",
+  "zh": "使用 Qwen-Image-Edit-2509 依文字指令編輯影像，可選 Lightning LoRA 進行少步採樣。"
+ },
+ "Image Edit (Qwen 2511)": {
+  "en": "Edits images via text instructions using Qwen-Image-Edit-2511 with improved character consistency and integrated LoRA.",
+  "zh": "使用 Qwen-Image-Edit-2511 依文字指令編輯影像，角色一致性更佳且內建 LoRA。"
+ },
+ "Image Face Detection (Mediapipe)": {
+  "en": "Detects facial landmarks from an image using MediaPipe, outputting landmark data, face bounding boxes, and an optional face-region mask.",
+  "zh": "使用 MediaPipe 偵測影像中的臉部關鍵點，輸出關鍵點資料、臉部邊界框與可選的臉部區域遮罩。"
+ },
+ "Image Inpainting (Flux.1 Fill Dev)": {
+  "en": "Inpaints masked image regions using Flux.1 fill [dev], Black Forest Labs' inpainting/outpainting model.",
+  "zh": "使用 Black Forest Labs 的 Flux.1 fill [dev] 修復模型，填補遮罩區域的影像。"
+ },
+ "Image Inpainting (Qwen-image)": {
+  "en": "Inpaints masked regions using Qwen-Image, extending its multilingual text rendering to inpainting tasks.",
+  "zh": "使用 Qwen-Image 修復遮罩區域，將多語言文字渲染能力延伸到修復任務。"
+ },
+ "Image Levels": {
+  "en": "Adjusts black point, white point, and gamma for tonal range control via GPU shader.",
+  "zh": "透過 GPU 著色器調整黑點、白點與 Gamma，控制色調範圍。"
+ },
+ "Image Normal Estimation (Marigold V2)": {
+  "en": "Estimates surface normals from an input image using Marigold V2, producing a normal map of surface orientation for relighting and geometry-aware processing.",
+  "zh": "使用 Marigold V2 從輸入影像估計表面法線，產生表面方向法線圖，用於重新打光與幾何感知處理。"
+ },
+ "Image Outpainting (Qwen-Image)": {
+  "en": "Scales both image and mask together while preserving alignment for editing workflows.",
+  "zh": "同時縮放影像與遮罩並保持對齊，適用於編輯工作流程。"
+ },
+ "Image Segmentation (SAM3)": {
+  "en": "Segments images into masks using Meta SAM3 from text prompts, points, or boxes.",
+  "zh": "使用 Meta SAM3，依文字提示、點或框將影像分割為遮罩。"
+ },
+ "Image Style Reference (Krea-2 Turbo)": {
+  "en": "Generates images from text using Krea 2 Turbo while matching the style of uploaded reference images, with optional LLM prompt enhancement.",
+  "zh": "使用 Krea 2 Turbo 依文字產生影像，同時比對上傳參考影像的風格，可選 LLM 提示詞增強。"
+ },
+ "Image to Gaussian Splat (TripoSplat)": {
+  "en": "This subgraph takes a single 2D image as input and generates a variable number of 3D Gaussians (up to 262,144) as output, enabling high-quality 3D reconstruction. It is ideal for asset creation, AR/VR, game development, and simulation environments, handling diverse image styles from photos to illustrations.",
+  "zh": "此子圖以單張 2D 影像為輸入，輸出數量可變的 3D 高斯點（最多 262,144 個），實現高品質 3D 重建。適合資產創作、AR/VR、遊戲開發與模擬環境，可處理從照片到插畫的各種影像風格。"
+ },
+ "Image to Layers(Qwen-Image-Layered)": {
+  "en": "Decomposes an image into variable-resolution RGBA layers for independent editing using Qwen-Image-Layered.",
+  "zh": "使用 Qwen-Image-Layered 將影像分解為可變解析度的 RGBA 圖層，方便獨立編輯。"
+ },
+ "Image to Model (Hunyuan3d 2.1)": {
+  "en": "Generates 3D mesh models from a single input image using Hunyuan3D 2.0/2.1.",
+  "zh": "使用 Hunyuan3D 2.0/2.1 從單張輸入影像產生 3D 網格模型。"
+ },
+ "Image to Pose Map (SDPose Multi-Person)": {
+  "en": "Detects multiple people in an image and outputs per-person pose keypoints, skeleton renders, and bounding boxes using SDPose.",
+  "zh": "使用 SDPose 偵測影像中的多人，輸出每個人的姿態關鍵點、骨架渲染與邊界框。"
+ },
+ "Image to Pose Map (SDPose-OOD)": {
+  "en": "Extracts human pose keypoints and stick-figure visuals from an image using SDPose-OOD, with optional bounding-box input per subject.",
+  "zh": "使用 SDPose-OOD 從影像擷取人體姿態關鍵點與骨架視覺，可依主體輸入邊界框。"
+ },
+ "Image to Video (LTX-2.3)": {
+  "en": "Generates video from a single input image using LTX-2.3.",
+  "zh": "使用 LTX-2.3 從單張輸入影像產生影片。"
+ },
+ "Image to Video (LTX-2.5)": {
+  "en": "Generates video from a first-frame image using LTX-2.5, with optional prompt enhancement, spatial upscaling, and synchronized audio.",
+  "zh": "使用 LTX-2.5 從首幀影像產生影片，可選提示詞增強、空間放大與同步音訊。"
+ },
+ "Image to Video (MiniMax H3)": {
+  "en": "Generates video with native stereo audio from a first frame and optional last frame using MiniMax H3, with optional turbo LoRA.",
+  "zh": "使用 MiniMax H3 從首幀（可選末幀）產生含原生立體聲音的影片，可選 turbo LoRA。"
+ },
+ "Image to Video (Wan 2.2)": {
+  "en": "Image-to-video with Wan 2.2 using a start image plus text prompt to extend motion from the still frame.",
+  "zh": "使用 Wan 2.2 進行圖生影片：以起始影像加文字提示，從靜止幀延伸動作。"
+ },
+ "Image to Video (Wan Dancer)": {
+  "en": "Generates a dance video from a character image and music using Wan Dancer hierarchical global and local models, with style and motion amplitude controls.",
+  "zh": "使用 Wan Dancer 分層全域與局部模型，從角色影像與音樂產生舞蹈影片，支援風格與動作幅度控制。"
+ },
+ "Image Upscale(Z-image-Turbo)": {
+  "en": "Upscales images to higher resolution using Z-Image-Turbo.",
+  "zh": "使用 Z-Image-Turbo 將影像放大至更高解析度。"
+ },
+ "Merge Videos": {
+  "en": "Concatenates two videos end-to-end with optional resize, letterbox padding, and audio merge or drop.",
+  "zh": "將兩段影片首尾相接，可選調整大小、信箱式填邊與合併或捨棄音訊。"
+ },
+ "Motion Transfer (Wan Animate 2 Distilled)": {
+  "en": "Transfers motion from a driving video onto a reference character using the distilled Wan Animate 2 checkpoint, without pose extraction.",
+  "zh": "使用蒸餾版 Wan Animate 2 檢查點，將驅動影片的動作轉移到參考角色，無需抽取姿態。"
+ },
+ "Motion Transfer (Wan Animate 2)": {
+  "en": "Transfers motion from a driving video onto a reference character using Wan Animate 2, preserving identity and generating a new background from the text prompt.",
+  "zh": "使用 Wan Animate 2 將驅動影片的動作轉移到參考角色，保留身分並依文字提示產生新背景。"
+ },
+ "Music Cover (YuE2)": {
+  "en": "Creates a new version of a song from reference audio using YuE2, preserving melody while changing style, vocals, lyrics, and arrangement.",
+  "zh": "使用 YuE2 從參考音訊創作歌曲的新版本，保留旋律並更換風格、人聲、歌詞與編曲。"
+ },
+ "Pose to Image (Z-Image-Turbo)": {
+  "en": "Generates an image from pose keypoints using Z-Image-Turbo with text conditioning.",
+  "zh": "使用 Z-Image-Turbo 搭配文字條件，從姿態關鍵點產生影像。"
+ },
+ "Pose to Video (LTX 2.0)": {
+  "en": "Generates video from pose reference frames using LTX-2, with optional synchronized audio.",
+  "zh": "使用 LTX-2 從姿態參考幀產生影片，可選同步音訊。"
+ },
+ "Prompt Enhance": {
+  "en": "Expands short text prompts into detailed descriptions using a text generation model for better generation quality.",
+  "zh": "使用文字生成模型將簡短提示詞擴充為詳細描述，提升生成品質。"
+ },
+ "Remove Background (BiRefNet)": {
+  "en": "Removes or replaces image backgrounds using BiRefNet segmentation and alpha compositing.",
+  "zh": "使用 BiRefNet 分割與 Alpha 合成，移除或替換影像背景。"
+ },
+ "Select Per-Line Text by Index": {
+  "en": "Selects one line from multiline text by zero-based index for batch or list-driven prompt workflows.",
+  "zh": "依零起始索引從多行文字中選取一行，適用於批次或清單驅動的提示詞工作流程。"
+ },
+ "Sharpen": {
+  "en": "Sharpens image details using a GPU fragment shader for enhanced clarity.",
+  "zh": "使用 GPU 片段著色器銳化影像細節，提升清晰度。"
+ },
+ "Split Image Grid to Tiles": {
+  "en": "Splits an image into a configurable columns×rows grid of equal tiles for tiled generation or processing.",
+  "zh": "將影像分割為可設定的欄×列等分方格，用於分塊生成或處理。"
+ },
+ "Text to Audio (ACE-Step 1.5)": {
+  "en": "Generates audio/music from text prompts using ACE-Step 1.5, a diffusion-based audio generation model.",
+  "zh": "使用 ACE-Step 1.5（基於擴散的音訊生成模型）依文字提示產生音訊／音樂。"
+ },
+ "Text to Image (Anima Base 1.0)": {
+  "en": "This subgraph generates non-photorealistic illustrations from text prompts using a 2-billion-parameter model optimized for anime concepts, characters, and styles. It is ideal for creating artistic images, concept art, or stylized illustrations where photorealism is not required. The model excels with anime and artistic content but performs poorly on realistic subjects.",
+  "zh": "此子圖使用針對動漫概念、角色與風格最佳化的 20 億參數模型，依文字提示產生非寫實插畫。適合創作藝術影像、概念圖或風格化插畫，無需寫實效果。模型擅長動漫與藝術內容，但在寫實主題上表現較差。"
+ },
+ "Text to Image (Anima)": {
+  "en": "This subgraph converts text prompts into non-photorealistic illustrations using a 2-billion-parameter model optimized for anime and artistic styles. It is ideal for generating concept art, character designs, or stylized illustrations where photorealism is not required. The model excels with anime and artistic content but performs poorly on realistic subjects.",
+  "zh": "此子圖使用針對動漫與藝術風格最佳化的 20 億參數模型，將文字提示轉為非寫實插畫。適合生成概念圖、角色設計或風格化插畫，無需寫實效果。模型擅長動漫與藝術內容，但在寫實主題上表現較差。"
+ },
+ "Text to Image (Boogu Turbo)": {
+  "en": "Generates images from text using Boogu-Image-0.1-Turbo, a four-step distilled 10B unified generation model with Qwen3-VL text encoder.",
+  "zh": "使用 Boogu-Image-0.1-Turbo（四步蒸餾的 100 億參數統一生成模型，搭配 Qwen3-VL 文字編碼器）依文字產生影像。"
+ },
+ "Text to Image (Ernie Image Turbo)": {
+  "en": "Faster ERNIE Image Turbo variant (~8B DiT, distilled for fewer sampling steps): same strengths in Chinese/English on-image text and layout-heavy graphics as the base ERNIE Image lineup, with bundled encoders and VAE.",
+  "zh": "更快的 ERNIE Image Turbo 版本（約 80 億參數 DiT，經蒸餾減少採樣步數）：與基礎 ERNIE Image 系列同樣擅長中英文圖內文字與重排版圖形，內建編碼器與 VAE。"
+ },
+ "Text to Image (Ernie Image)": {
+  "en": "Generates images from text prompts using Baidu's open ERNIE Image (~8B DiT): bilingual in-image typography and layouts (posters, infographics, multi-panel compositions) alongside general scenes, with bundled encoders and VAE.",
+  "zh": "使用百度開源的 ERNIE Image（約 80 億參數 DiT）依文字提示產生影像：支援雙語圖內排版與版面（海報、資訊圖、多格構圖）及一般場景，內建編碼器與 VAE。"
+ },
+ "Text to Image (Flux.1 Dev)": {
+  "en": "Generates images from prompts using FLUX.1 [dev]: a 12B rectified-flow MMDiT with dual CLIP plus T5-XXL text encoders and guidance-distilled sampling for sharp prompt following versus classic DDPM diffusion.",
+  "zh": "使用 FLUX.1 [dev] 依提示詞產生影像：120 億參數整流流 MMDiT，搭配雙 CLIP 與 T5-XXL 文字編碼器，採用引導蒸餾採樣，對提示詞的跟隨度比傳統 DDPM 擴散更精準。"
+ },
+ "Text to Image (Flux.1 Krea Dev)": {
+  "en": "FLUX.1 Krea [dev] (Black Forest Labs × Krea): open-weight 12B rectified-flow text-to-image drop-in alongside FLUX.1 [dev], tuned away from overcooked saturation toward more natural diversity in people, realism, and style while keeping ecosystem compatibility.",
+  "zh": "FLUX.1 Krea [dev]（Black Forest Labs × Krea）：開源權重 120 億參數整流流文生圖模型，可直接替代 FLUX.1 [dev]，調校方向是遠離過度飽和，讓人物、寫實與風格更具自然多樣性，同時保持生態相容性。"
+ },
+ "Text to Image (Flux.2 Dev)": {
+  "en": "Generates images from prompts using FLUX.2 [dev]: a newer 32B rectified-flow stack with distilled guidance plus a stronger long-context multimodal encoder for complex scenes, sharper typography/UI text, anatomy, lighting, and high-resolution latent decoding.",
+  "zh": "使用 FLUX.2 [dev] 依提示詞產生影像：更新的 320 億參數整流流架構，搭配蒸餾引導與更強的長上下文多模態編碼器，擅長複雜場景、更清晰的排版／UI 文字、解剖、光照與高解析度潛在解碼。"
+ },
+ "Text to Image (Ideogram v4)": {
+  "en": "This subgraph generates images using Ideogram v4, accepting plain text or structured JSON prompts for precise layout and style control. It suits detailed illustrations, concept art, or marketing visuals needing predictable composition and color palettes. The model uses flow-matching with asymmetric guidance, so no negative prompt is needed, but JSON prompts yield the best results.",
+  "zh": "此子圖使用 Ideogram v4 產生影像，接受純文字或結構化 JSON 提示詞，以精確控制版面與風格。適合需要可預期構圖與配色方案的細節插畫、概念圖或行銷視覺。模型使用非對稱引導的流匹配，因此不需要負面提示詞，但使用 JSON 提示詞效果最佳。"
+ },
+ "Text to Image (Krea-2 Turbo)": {
+  "en": "Generates images from text using Krea 2 Turbo with optional LLM prompt enhancement and LoRA style switching.",
+  "zh": "使用 Krea 2 Turbo 依文字產生影像，可選 LLM 提示詞增強與 LoRA 風格切換。"
+ },
+ "Text to Image (Mage-Flow Turbo)": {
+  "en": "Generates images from text using Microsoft Mage-Flow Turbo, a distilled 4-step 4B native-resolution model.",
+  "zh": "使用微軟 Mage-Flow Turbo（蒸餾 4 步、40 億參數原生解析度模型）依文字產生影像。"
+ },
+ "Text to Image (Mage-Flow)": {
+  "en": "Generates images from text using Microsoft Mage-Flow, a compact 4B native-resolution model that supports any aspect ratio up to 2K.",
+  "zh": "使用微軟 Mage-Flow（輕量 40 億參數原生解析度模型）依文字產生影像，支援最高 2K 的任意長寬比。"
+ },
+ "Text to Image (NetaYume Lumina)": {
+  "en": "Generates images from text prompts using NetaYume Lumina, fine-tuned from Neta Lumina for anime-style and illustration generation.",
+  "zh": "使用 NetaYume Lumina（由 Neta Lumina 微調，專注動漫風格與插畫生成）依文字提示產生影像。"
+ },
+ "Text to Image (Qwen-Image 2512)": {
+  "en": "Generates images from text prompts using Qwen-Image-2512, with enhanced human realism and finer natural detail over the base version.",
+  "zh": "使用 Qwen-Image-2512 依文字提示產生影像，相較基礎版提升人物寫實度與更細緻的自然細節。"
+ },
+ "Text to Image (Qwen-Image)": {
+  "en": "Generates images from text prompts using Qwen-Image, Alibaba's 20B MMDiT model with excellent multilingual text rendering.",
+  "zh": "使用阿里雲 Qwen-Image（200 億參數 MMDiT 模型，多語言文字渲染出色）依文字提示產生影像。"
+ },
+ "Text to Image (Z-Image-Base)": {
+  "en": "Generates images from text prompts using Z-Image base weights with Qwen3 text encoder and bundled VAE.",
+  "zh": "使用 Z-Image 基礎權重搭配 Qwen3 文字編碼器與內建 VAE，依文字提示產生影像。"
+ },
+ "Text to Image (Z-Image-Turbo)": {
+  "en": "Generates images from text prompts using Z-Image-Turbo, Alibaba's distilled 6B DiT model.",
+  "zh": "使用阿里雲 Z-Image-Turbo（蒸餾 60 億參數 DiT 模型）依文字提示產生影像。"
+ },
+ "Text to Image": {
+  "en": "Generates images from text prompts using Z-Image-Turbo defaults with Qwen3 text encoder and VAE.",
+  "zh": "使用 Z-Image-Turbo 預設配置搭配 Qwen3 文字編碼器與 VAE，依文字提示產生影像。"
+ },
+ "Text to Music (MiniMax Music 3)": {
+  "en": "Generates complete songs up to five minutes from a music caption and lyrics using MiniMax Music 3.",
+  "zh": "使用 MiniMax Music 3，依音樂描述與歌詞產生最多五分鐘的完整歌曲。"
+ },
+ "Text to Music (YuE2)": {
+  "en": "Generates complete songs from a music style and lyrics using YuE2, with symbolic planning for structured melody, harmony, vocals, and accompaniment.",
+  "zh": "使用 YuE2，依音樂風格與歌詞產生完整歌曲，透過符號化規劃實現結構化的旋律、和聲、人聲與伴奏。"
+ },
+ "Text to Video (LTX-2.3)": {
+  "en": "Generates video from text prompts using LTX-2.3, Lightricks' video diffusion model.",
+  "zh": "使用 Lightricks 的影片擴散模型 LTX-2.3，依文字提示產生影片。"
+ },
+ "Text to Video (LTX-2.5)": {
+  "en": "Generates video from text prompts using LTX-2.5, with optional prompt enhancement, spatial upscaling, and synchronized audio.",
+  "zh": "使用 LTX-2.5 依文字提示產生影片，可選提示詞增強、空間放大與同步音訊。"
+ },
+ "Text to Video (Wan 2.2)": {
+  "en": "Generates video from text prompts using Wan2.2, Alibaba's diffusion video model.",
+  "zh": "使用阿里雲影片擴散模型 Wan2.2，依文字提示產生影片。"
+ },
+ "Unsharp Mask": {
+  "en": "Enhances edge contrast via unsharp masking for a sharper image appearance.",
+  "zh": "透過反銳化遮罩增強邊緣對比，使影像看起來更銳利。"
+ },
+ "Upscale Video (SeedVR2 3B Int8)": {
+  "en": "Upscales and restores video using ByteDance SeedVR2 3B INT8, a one-step diffusion restoration model.",
+  "zh": "使用字節跳動 SeedVR2 3B INT8（單步擴散修復模型）放大並還原影片。"
+ },
+ "Video Captioning (Gemini)": {
+  "en": "Generates descriptive captions for video input using Google's Gemini multimodal LLM.",
+  "zh": "使用 Google Gemini 多模態大語言模型為影片輸入產生描述性說明文字。"
+ },
+ "Video Depth Estimation (Depth Anything 3)": {
+  "en": "This subgraph processes a video input through Depth Anything 3 to produce temporally consistent depth maps for each frame, outputting a depth video. It is ideal for video content requiring spatial geometry estimation, such as 3D reconstruction, SLAM, or novel view synthesis from moving cameras. The model uses a plain transformer backbone trained with a depth-ray representation, supporting any number of views without requiring known camera poses.",
+  "zh": "此子圖將影片輸入交由 Depth Anything 3 處理，為每一幀產生時間上一致的深度圖並輸出深度影片。適合需要空間幾何估計的影片內容，例如 3D 重建、SLAM 或移動相機的新視角合成。模型使用以深度射線表示訓練的純 transformer 骨架，支援任意視圖數且不需已知相機姿態。"
+ },
+ "Video Depth Estimation (MoGe)": {
+  "en": "Estimates monocular depth from an input video using MoGe, outputting both raw and colorized depth maps plus a mask.",
+  "zh": "使用 MoGe 從輸入影片估計單眼深度，輸出原始與彩色化深度圖以及遮罩。"
+ },
+ "Video Edit (Bernini-R)": {
+  "en": "This subgraph uses Depth Anything 3 to predict spatially consistent geometry from any number of images or video frames, with or without known camera poses. It outputs depth maps, camera poses, and optionally 3D Gaussian parameters for novel view synthesis.",
+  "zh": "此子圖使用 Depth Anything 3，從任意數量的影像或影片幀預測空間一致的幾何，無論是否有已知相機姿態。輸出深度圖、相機姿態，並可選輸出 3D 高斯參數以進行新視角合成。"
+ },
+ "Video Face Detection (Mediapipe)": {
+  "en": "Detects facial landmarks from a video using MediaPipe, outputting landmark data, face bounding boxes, and an optional face-region mask.",
+  "zh": "使用 MediaPipe 偵測影片中的臉部關鍵點，輸出關鍵點資料、臉部邊界框與可選的臉部區域遮罩。"
+ },
+ "Video Generation (LTX-2.3 IC-LoRA)": {
+  "en": "Generates LTX-2.3 video with IC-LoRA structural guidance from aligned control images such as depth, pose, or edges.",
+  "zh": "使用 LTX-2.3 產生影片，以 IC-LoRA 結構引導，依深度、姿態或邊緣等對齊控制圖進行生成。"
+ },
+ "Video Inpaint (VOID)": {
+  "en": "Removes objects from video by inpainting masked regions using VOID (CogVideoX), with SAM3 text-guided segmentation and optional two-pass optical-flow refinement.",
+  "zh": "使用 VOID（CogVideoX）透過修復遮罩區域從影片中移除物件，搭配 SAM3 文字引導分割與可選的兩段式光流精修。"
+ },
+ "Video Inpainting (Wan2.1 VACE)": {
+  "en": "Removes objects from video by inpainting masked regions using Wan 2.1 VACE, with SAM3 text-guided segmentation and optional Lightning LoRA turbo mode.",
+  "zh": "使用 Wan 2.1 VACE 透過修復遮罩區域從影片中移除物件，搭配 SAM3 文字引導分割與可選 Lightning LoRA 加速模式。"
+ },
+ "Video Segmentation (SAM3)": {
+  "en": "Segments video into temporally consistent masks using Meta SAM3 from text or interactive prompts.",
+  "zh": "使用 Meta SAM3，依文字或互動提示將影片分割為時間上一致的遮罩。"
+ },
+ "Video Stitch": {
+  "en": "Stitches multiple video clips into a single sequential video file.",
+  "zh": "將多段影片片段拼接成單一連續影片檔案。"
+ },
+ "Video to Pose Map (SDPose Multi-Person)": {
+  "en": "Extracts multi-person pose keypoints and skeleton frame sequences from video using SDPose with built-in person detection.",
+  "zh": "使用內建人物偵測的 SDPose，從影片擷取多人姿態關鍵點與骨架幀序列。"
+ },
+ "Video Upscale(GAN x4)": {
+  "en": "Upscales video to 4× resolution using a GAN-based upscaling model.",
+  "zh": "使用基於 GAN 的放大模型將影片放大至 4 倍解析度。"
+ }
+}

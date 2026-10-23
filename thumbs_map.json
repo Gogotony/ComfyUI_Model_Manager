@@ -1,0 +1,461 @@
+{
+ "thumbs": {
+  "Audio Generation (Stable Audio 3 Medium Base)": {
+   "slug": "audio_stable_audio_3_medium_base",
+   "webp": "audio_stable_audio_3_medium_base-1.webp"
+  },
+  "Audio Generation (Stable Audio 3 Medium)": {
+   "slug": "audio_stable_audio_3_medium",
+   "webp": "audio_stable_audio_3_medium-1.webp"
+  },
+  "Brightness and Contrast": {
+   "slug": "basic_mask_operations_and_compositing",
+   "webp": "basic_mask_operations_and_compositing-1.webp"
+  },
+  "Canny to Image (Z-Image-Turbo)": {
+   "slug": "image_z_image_turbo",
+   "webp": "image_z_image_turbo-1.webp"
+  },
+  "Canny to Video (LTX 2.0)": {
+   "slug": "video_ltx2_canny_to_video",
+   "webp": "video_ltx2_canny_to_video-1.webp"
+  },
+  "Character Replacement (SCAIL-2 Base)": {
+   "slug": "video_wan21_scail2_character_replacement_int8",
+   "webp": "video_wan21_scail2_character_replacement_int8-1.webp"
+  },
+  "Character Replacement (SCAIL-2 Extend)": {
+   "slug": "video_wan21_scail2_character_replacement_int8",
+   "webp": "video_wan21_scail2_character_replacement_int8-1.webp"
+  },
+  "Character Replacement (SCAIL-2 Int8 Base)": {
+   "slug": "video_wan21_scail2_character_replacement_int8",
+   "webp": "video_wan21_scail2_character_replacement_int8-1.webp"
+  },
+  "Color Adjustment": {
+   "slug": "basic_image_color_adjustment",
+   "webp": "basic_image_color_adjustment-1.webp"
+  },
+  "Color Balance": {
+   "slug": "templates-color_illustration",
+   "webp": "templates-color_illustration-1.webp"
+  },
+  "Color Curves": {
+   "slug": "templates-color_illustration",
+   "webp": "templates-color_illustration-1.webp"
+  },
+  "Control to Image (Anima LLLite)": {
+   "slug": "image_anima_lllite_any_control_to_image",
+   "webp": "image_anima_lllite_any_control_to_image-1.webp"
+  },
+  "ControlNet (Z-Image-Turbo)": {
+   "slug": "image_z_image_turbo_fun_union_controlnet",
+   "webp": "image_z_image_turbo_fun_union_controlnet-1.webp"
+  },
+  "Crop Images 2x2": {
+   "slug": "api_bfl_flux_1_kontext_multiple_images_input",
+   "webp": "api_bfl_flux_1_kontext_multiple_images_input-1.webp"
+  },
+  "Crop Images 3x3": {
+   "slug": "template_3x3_contact_sheet",
+   "webp": "template_3x3_contact_sheet-1.webp"
+  },
+  "Depth to Image (Z-Image-Turbo)": {
+   "slug": "image_z_image_turbo",
+   "webp": "image_z_image_turbo-1.webp"
+  },
+  "Depth to Video (ltx 2.0)": {
+   "slug": "video_ltx2_depth_to_video",
+   "webp": "video_ltx2_depth_to_video-1.webp"
+  },
+  "Edge-Preserving Blur": {
+   "slug": "sd3.5_large_blur",
+   "webp": "sd3.5_large_blur-1.webp"
+  },
+  "Edit Image (Boogu Image Edit)": {
+   "slug": "image_boogu_image_0_1_edit",
+   "webp": "image_boogu_image_0_1_edit-1.webp"
+  },
+  "Film Grain": {
+   "slug": "utility-frame_interpolation-film",
+   "webp": "utility-frame_interpolation-film-1.webp"
+  },
+  "First & Last Frame to Video (LTX-2.5)": {
+   "slug": "video_ltx2_depth_to_video",
+   "webp": "video_ltx2_depth_to_video-1.webp"
+  },
+  "First-Last-Frame to Video (LTX-2.3)": {
+   "slug": "video_ltx2_depth_to_video",
+   "webp": "video_ltx2_depth_to_video-1.webp"
+  },
+  "First-Last-Frame to Video": {
+   "slug": "utility_video_frame_interpolation",
+   "webp": "utility_video_frame_interpolation-1.webp"
+  },
+  "FLF2V (Wan2.1 VACE)": {
+   "slug": "video_wan2_2_14B_flf2v",
+   "webp": "video_wan2_2_14B_flf2v-1.webp"
+  },
+  "Frame Interpolation": {
+   "slug": "utility_gimm_frame_interpolation",
+   "webp": "utility_gimm_frame_interpolation-1.webp"
+  },
+  "Geometry Estimation (MoGe)": {
+   "slug": "utility_moge3_geometry_estimation",
+   "webp": "utility_moge3_geometry_estimation-1.webp"
+  },
+  "Get Any Video Frame": {
+   "slug": "utility_video_frame_interpolation",
+   "webp": "utility_video_frame_interpolation-1.webp"
+  },
+  "Hue and Saturation": {
+   "slug": "audio_melbandroformer_audio_separation",
+   "webp": "audio_melbandroformer_audio_separation-1.webp"
+  },
+  "Image Albedo Estimation (Marigold V2)": {
+   "slug": "image_marigold_v2_albedo_estimation",
+   "webp": "image_marigold_v2_albedo_estimation-1.webp"
+  },
+  "Image Blur": {
+   "slug": "image_flux2",
+   "webp": "image_flux2-1.webp"
+  },
+  "Image Captioning (gemini)": {
+   "slug": "api_google_gemini_image",
+   "webp": "api_google_gemini_image-1.webp"
+  },
+  "Image Channels": {
+   "slug": "image_z_image",
+   "webp": "image_z_image-1.webp"
+  },
+  "Image Depth Estimation (Depth Anything 3)": {
+   "slug": "utility_depth_anything3_image_depth_estimation",
+   "webp": "utility_depth_anything3_image_depth_estimation-1.webp"
+  },
+  "Image Depth Estimation (Lotus Depth)": {
+   "slug": "image_marigold_v2_depth_estimation",
+   "webp": "image_marigold_v2_depth_estimation-1.webp"
+  },
+  "Image Depth Estimation (Marigold V2)": {
+   "slug": "image_marigold_v2_depth_estimation",
+   "webp": "image_marigold_v2_depth_estimation-1.webp"
+  },
+  "Image Depth Estimation (MoGe)": {
+   "slug": "utility_moge_depth_estimation",
+   "webp": "utility_moge_depth_estimation-1.webp"
+  },
+  "Image Edit (Bernini-R)": {
+   "slug": "video_bernini_r_image_editing",
+   "webp": "video_bernini_r_image_editing-1.webp"
+  },
+  "Image Edit (FireRed Image Edit 1.1)": {
+   "slug": "image_firered_image_edit1_1",
+   "webp": "image_firered_image_edit1_1-1.webp"
+  },
+  "Image Edit (Flux.2 Dev)": {
+   "slug": "image_flux.1_fill_dev_OneReward",
+   "webp": "image_flux.1_fill_dev_OneReward-1.webp"
+  },
+  "Image Edit (Flux.2 Klein 4B)": {
+   "slug": "image_flux2_klein_image_edit_9b_base",
+   "webp": "image_flux2_klein_image_edit_9b_base-1.webp"
+  },
+  "Image Edit (Joy Image Edit)": {
+   "slug": "image_joyai_image_edit",
+   "webp": "image_joyai_image_edit-1.webp"
+  },
+  "Image Edit (LongCat Image Edit)": {
+   "slug": "image_longcat_image_edit",
+   "webp": "image_longcat_image_edit-1.webp"
+  },
+  "Image Edit (Mage-Flow-Edit Turbo)": {
+   "slug": "image_mage_flow_edit_turbo_int8",
+   "webp": "image_mage_flow_edit_turbo_int8-1.webp"
+  },
+  "Image Edit (Mage-Flow-Edit)": {
+   "slug": "image_mage_flow_edit_int8",
+   "webp": "image_mage_flow_edit_int8-1.webp"
+  },
+  "Image Edit (Qwen 2509)": {
+   "slug": "image_qwen_image_edit_2509",
+   "webp": "image_qwen_image_edit_2509-1.webp"
+  },
+  "Image Edit (Qwen 2511)": {
+   "slug": "image_qwen_image_edit_2511",
+   "webp": "image_qwen_image_edit_2511-1.webp"
+  },
+  "Image Face Detection (Mediapipe)": {
+   "slug": "utility_face_detection_mediapipe",
+   "webp": "utility_face_detection_mediapipe-1.webp"
+  },
+  "Image Inpainting (Flux.1 Fill Dev)": {
+   "slug": "image_flux.1_fill_dev_OneReward",
+   "webp": "image_flux.1_fill_dev_OneReward-1.webp"
+  },
+  "Image Inpainting (Qwen-image)": {
+   "slug": "image_qwen_image_instantx_inpainting_controlnet",
+   "webp": "image_qwen_image_instantx_inpainting_controlnet-1.webp"
+  },
+  "Image Levels": {
+   "slug": "image_lens_t2i",
+   "webp": "image_lens_t2i-1.webp"
+  },
+  "Image Normal Estimation (Marigold V2)": {
+   "slug": "image_marigold_v2_surface_normal_estimation",
+   "webp": "image_marigold_v2_surface_normal_estimation-1.webp"
+  },
+  "Image Outpainting (Qwen-Image)": {
+   "slug": "image_qwen_image",
+   "webp": "image_qwen_image-1.webp"
+  },
+  "Image Segmentation (SAM3)": {
+   "slug": "utility_image_segment_sam3",
+   "webp": "utility_image_segment_sam3-1.webp"
+  },
+  "Image Style Reference (Krea-2 Turbo)": {
+   "slug": "image_krea2_turbo_int8_image_style_reference",
+   "webp": "image_krea2_turbo_int8_image_style_reference-1.webp"
+  },
+  "Image to Gaussian Splat (TripoSplat)": {
+   "slug": "3d_triposplat_image_to_gaussian_splat",
+   "webp": "3d_triposplat_image_to_gaussian_splat-1.webp"
+  },
+  "Image to Layers(Qwen-Image-Layered)": {
+   "slug": "image_qwen_image_layered",
+   "webp": "image_qwen_image_layered-1.webp"
+  },
+  "Image to Model (Hunyuan3d 2.1)": {
+   "slug": "3d_hunyuan3d_image_to_model",
+   "webp": "3d_hunyuan3d_image_to_model-1.webp"
+  },
+  "Image to Pose Map (SDPose Multi-Person)": {
+   "slug": "utility_sdpose_multi_person",
+   "webp": "utility_sdpose_multi_person-1.webp"
+  },
+  "Image to Pose Map (SDPose-OOD)": {
+   "slug": "utility_sdpose_ood_video_to_pose_map",
+   "webp": "utility_sdpose_ood_video_to_pose_map-1.webp"
+  },
+  "Image to Video (LTX-2.3)": {
+   "slug": "ltxv_image_to_video",
+   "webp": "ltxv_image_to_video-1.webp"
+  },
+  "Image to Video (LTX-2.5)": {
+   "slug": "ltxv_image_to_video",
+   "webp": "ltxv_image_to_video-1.webp"
+  },
+  "Image to Video (MiniMax H3)": {
+   "slug": "image_to_video_wan",
+   "webp": "image_to_video_wan-1.webp"
+  },
+  "Image to Video (Wan 2.2)": {
+   "slug": "image_to_video_wan",
+   "webp": "image_to_video_wan-1.webp"
+  },
+  "Image to Video (Wan Dancer)": {
+   "slug": "image_to_video_wan",
+   "webp": "image_to_video_wan-1.webp"
+  },
+  "Image Upscale(Z-image-Turbo)": {
+   "slug": "utility_z_image_turbo_2k_upscaler.app",
+   "webp": "utility_z_image_turbo_2k_upscaler.app-1.webp"
+  },
+  "Merge Videos": {
+   "slug": "template_seedance2_0_viral_videos_character_swap",
+   "webp": "template_seedance2_0_viral_videos_character_swap-1.webp"
+  },
+  "Motion Transfer (Wan Animate 2 Distilled)": {
+   "slug": "video_wan_animate2_distilled",
+   "webp": "video_wan_animate2_distilled-1.webp"
+  },
+  "Motion Transfer (Wan Animate 2)": {
+   "slug": "video_wan_animate2",
+   "webp": "video_wan_animate2-1.webp"
+  },
+  "Music Cover (YuE2)": {
+   "slug": "audio_yue2_music_cover",
+   "webp": "audio_yue2_music_cover-1.webp"
+  },
+  "Pose to Image (Z-Image-Turbo)": {
+   "slug": "image_z_image_turbo",
+   "webp": "image_z_image_turbo-1.webp"
+  },
+  "Pose to Video (LTX 2.0)": {
+   "slug": "video_ltx2_pose_to_video",
+   "webp": "video_ltx2_pose_to_video-1.webp"
+  },
+  "Prompt Enhance": {
+   "slug": "api_topaz_image_enhance",
+   "webp": "api_topaz_image_enhance-1.webp"
+  },
+  "Remove Background (BiRefNet)": {
+   "slug": "utility_birefnet_remove_background",
+   "webp": "utility_birefnet_remove_background-1.webp"
+  },
+  "Select Per-Line Text by Index": {
+   "slug": "utility_text_lists_select_prompt",
+   "webp": "utility_text_lists_select_prompt-1.webp"
+  },
+  "Split Image Grid to Tiles": {
+   "slug": "ltxv_image_to_video",
+   "webp": "ltxv_image_to_video-1.webp"
+  },
+  "Text to Audio (ACE-Step 1.5)": {
+   "slug": "audio_ace_step1_5_xl_sft",
+   "webp": "audio_ace_step1_5_xl_sft-1.webp"
+  },
+  "Text to Image (Anima Base 1.0)": {
+   "slug": "image_anima_base_v1",
+   "webp": "image_anima_base_v1-1.webp"
+  },
+  "Text to Image (Anima)": {
+   "slug": "api_wan_text_to_image",
+   "webp": "api_wan_text_to_image-1.webp"
+  },
+  "Text to Image (Boogu Turbo)": {
+   "slug": "image_boogu_image_0_1_turbo_t2i",
+   "webp": "image_boogu_image_0_1_turbo_t2i-1.webp"
+  },
+  "Text to Image (Ernie Image Turbo)": {
+   "slug": "image_ernie_image_turbo",
+   "webp": "image_ernie_image_turbo-1.webp"
+  },
+  "Text to Image (Ernie Image)": {
+   "slug": "image_ernie_image",
+   "webp": "image_ernie_image-1.webp"
+  },
+  "Text to Image (Flux.1 Dev)": {
+   "slug": "flux_dev_full_text_to_image",
+   "webp": "flux_dev_full_text_to_image-1.webp"
+  },
+  "Text to Image (Flux.1 Krea Dev)": {
+   "slug": "flux_dev_full_text_to_image",
+   "webp": "flux_dev_full_text_to_image-1.webp"
+  },
+  "Text to Image (Flux.2 Dev)": {
+   "slug": "flux_dev_full_text_to_image",
+   "webp": "flux_dev_full_text_to_image-1.webp"
+  },
+  "Text to Image (Ideogram v4)": {
+   "slug": "image_ideogram4_t2i",
+   "webp": "image_ideogram4_t2i-1.webp"
+  },
+  "Text to Image (Krea-2 Turbo)": {
+   "slug": "image_krea2_turbo_t2i",
+   "webp": "image_krea2_turbo_t2i-1.webp"
+  },
+  "Text to Image (Mage-Flow Turbo)": {
+   "slug": "image_mage_flow_turbo_t2i_int8",
+   "webp": "image_mage_flow_turbo_t2i_int8-1.webp"
+  },
+  "Text to Image (Mage-Flow)": {
+   "slug": "image_mage_flow_t2i_int8",
+   "webp": "image_mage_flow_t2i_int8-1.webp"
+  },
+  "Text to Image (NetaYume Lumina)": {
+   "slug": "image_netayume_lumina_t2i",
+   "webp": "image_netayume_lumina_t2i-1.webp"
+  },
+  "Text to Image (Qwen-Image 2512)": {
+   "slug": "image_qwen_Image_2512",
+   "webp": "image_qwen_Image_2512-1.webp"
+  },
+  "Text to Image (Qwen-Image)": {
+   "slug": "image_qwen_image",
+   "webp": "image_qwen_image-1.webp"
+  },
+  "Text to Image (Z-Image-Base)": {
+   "slug": "image_moss_image_base_t2i",
+   "webp": "image_moss_image_base_t2i-1.webp"
+  },
+  "Text to Image (Z-Image-Turbo)": {
+   "slug": "image_z_image_turbo",
+   "webp": "image_z_image_turbo-1.webp"
+  },
+  "Text to Image": {
+   "slug": "api_wan_text_to_image",
+   "webp": "api_wan_text_to_image-1.webp"
+  },
+  "Text to Music (MiniMax Music 3)": {
+   "slug": "audio_minimax_music_3",
+   "webp": "audio_minimax_music_3-1.webp"
+  },
+  "Text to Music (YuE2)": {
+   "slug": "audio_yue2_text2music",
+   "webp": "audio_yue2_text2music-1.webp"
+  },
+  "Text to Video (LTX-2.3)": {
+   "slug": "ltxv_text_to_video",
+   "webp": "ltxv_text_to_video-1.webp"
+  },
+  "Text to Video (LTX-2.5)": {
+   "slug": "ltxv_text_to_video",
+   "webp": "ltxv_text_to_video-1.webp"
+  },
+  "Text to Video (Wan 2.2)": {
+   "slug": "text_to_video_wan",
+   "webp": "text_to_video_wan-1.webp"
+  },
+  "Unsharp Mask": {
+   "slug": "basic_mask_operations_and_compositing",
+   "webp": "basic_mask_operations_and_compositing-1.webp"
+  },
+  "Upscale Video (SeedVR2 3B Int8)": {
+   "slug": "utility_seedvr2_3b_int8_upscale_video",
+   "webp": "utility_seedvr2_3b_int8_upscale_video-1.webp"
+  },
+  "Video Captioning (Gemini)": {
+   "slug": "api_google_gemini_omni_flash_video_edit",
+   "webp": "api_google_gemini_omni_flash_video_edit-1.webp"
+  },
+  "Video Depth Estimation (Depth Anything 3)": {
+   "slug": "utility_depth_anything3_video_depth_estimation",
+   "webp": "utility_depth_anything3_video_depth_estimation-1.webp"
+  },
+  "Video Depth Estimation (MoGe)": {
+   "slug": "utility_moge_depth_estimation",
+   "webp": "utility_moge_depth_estimation-1.webp"
+  },
+  "Video Edit (Bernini-R)": {
+   "slug": "video_bernini_r_image_editing",
+   "webp": "video_bernini_r_image_editing-1.webp"
+  },
+  "Video Face Detection (Mediapipe)": {
+   "slug": "utility_face_detection_mediapipe",
+   "webp": "utility_face_detection_mediapipe-1.webp"
+  },
+  "Video Generation (LTX-2.3 IC-LoRA)": {
+   "slug": "video_ltx2_3_ic_lora",
+   "webp": "video_ltx2_3_ic_lora-1.webp"
+  },
+  "Video Inpaint (VOID)": {
+   "slug": "utility_void_video_inpainting",
+   "webp": "utility_void_video_inpainting-1.webp"
+  },
+  "Video Inpainting (Wan2.1 VACE)": {
+   "slug": "video_wan_vace_inpainting",
+   "webp": "video_wan_vace_inpainting-1.webp"
+  },
+  "Video Segmentation (SAM3)": {
+   "slug": "utility_video_segment_sam3",
+   "webp": "utility_video_segment_sam3-1.webp"
+  },
+  "Video Stitch": {
+   "slug": "video_wan_ati",
+   "webp": "video_wan_ati-1.webp"
+  },
+  "Video to Pose Map (SDPose Multi-Person)": {
+   "slug": "utility_sdpose_multi_person_video",
+   "webp": "utility_sdpose_multi_person_video-1.webp"
+  },
+  "Video Upscale(GAN x4)": {
+   "slug": "utility_video_upscale",
+   "webp": "utility_video_upscale-1.webp"
+  }
+ },
+ "unmatched": [
+  "Chromatic Aberration",
+  "Glow",
+  "Sharpen"
+ ]
+}

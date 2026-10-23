@@ -1,0 +1,9 @@
+# Runtime state — never publish
+server.log
+server.log.err
+scan_state.json
+*.pyc
+__pycache__/
+
+# Thumbnail cache (auto re-downloaded by the server)
+thumbs/

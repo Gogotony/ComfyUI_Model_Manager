@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>Comfyui Model Manager</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0b0d14;
+    --bg-elev: #141722;
+    --bg-card: #1a1e2e;
+    --border: #262b3d;
+    --text: #eef0f6;
+    --text-dim: #7a8199;
+    --accent: #6366f1;
+    --accent-2: #a855f7;
+    --accent-3: #ec4899;
+    --green: #10b981;
+    --amber: #f59e0b;
+    --red: #ef4444;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+    background: radial-gradient(ellipse 80% 50% at 50% -10%, #1e2238 0%, var(--bg) 60%);
+    color: var(--text);
+    min-height: 100vh;
+    padding-bottom: 140px;
+  }
+
+  /* Header */
+  .header {
+    padding: 28px 40px 18px;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(11,13,20,0.8);
+    backdrop-filter: blur(24px);
+  }
+  h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
+  h1 .bolt {
+    background: linear-gradient(135deg, var(--accent), var(--accent-3));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .subtitle { color: var(--text-dim); margin-top: 6px; font-size: 13px; }
+  .toolbar { display: flex; gap: 12px; margin-top: 16px; align-items: center; }
+  .search {
+    flex: 1; max-width: 420px;
+    background: var(--bg-elev); border: 1px solid var(--border);
+    border-radius: 12px; padding: 10px 16px; color: var(--text);
+    font-size: 14px; outline: none; transition: all 0.2s;
+  }
+  .search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(99,102,241,0.15); }
+  .btn {
+    background: var(--bg-elev); border: 1px solid var(--border);
+    color: var(--text); padding: 10px 18px; border-radius: 12px;
+    cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.2s;
+  }
+  .btn:hover { background: var(--bg-card); border-color: var(--accent); transform: translateY(-1px); }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    border: none; color: white; font-weight: 600;
+    box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+  }
+  .btn-primary:hover { box-shadow: 0 6px 24px rgba(99,102,241,0.6); }
+  .btn-danger { border-color: rgba(239,68,68,0.4); color: #fca5a5; }
+  .btn-danger:hover { background: rgba(239,68,68,0.1); border-color: var(--red); }
+
+  .env-banner {
+    margin-top: 14px; padding: 12px 16px; border-radius: 10px;
+    background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3);
+    color: #fca5a5; font-size: 13px; display: none;
+  }
+  .env-banner.ok { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); color: #6ee7b7; }
+  .env-banner code { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; }
+
+  .stats { display: flex; gap: 10px; margin-top: 14px; font-size: 12px; color: var(--text-dim); flex-wrap: wrap; }
+  .stat-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 12px; border-radius: 999px;
+    background: var(--bg-elev); border: 1px solid var(--border);
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot.green { background: var(--green); box-shadow: 0 0 8px var(--green); }
+  .dot.amber { background: var(--amber); box-shadow: 0 0 8px var(--amber); }
+
+  /* Categories */
+  .container { padding: 24px 40px 120px; max-width: 1200px; margin: 0 auto; }
+  .category {
+    margin-bottom: 14px;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+    overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .category:hover { border-color: rgba(99,102,241,0.3); }
+  .category-head {
+    padding: 16px 20px; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    user-select: none; transition: background 0.15s;
+  }
+  .category-head:hover { background: rgba(99,102,241,0.04); }
+  .category-title { font-size: 16px; font-weight: 600; }
+  .category-meta { font-size: 12px; color: var(--text-dim); display: flex; gap: 12px; align-items: center; }
+  .chevron { transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); color: var(--text-dim); }
+  .category.collapsed .chevron { transform: rotate(-90deg); }
+  .category-body { transition: all 0.3s ease; }
+  .category.collapsed .category-body { display: none; }
+
+  /* Template row */
+  .template {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 16px 20px; border-top: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  .template:hover { background: rgba(99,102,241,0.04); }
+  .template.ready { opacity: 0.5; }
+
+  /* Custom checkbox */
+  .checkbox-wrap {
+    margin-top: 4px; width: 20px; height: 20px;
+    flex-shrink: 0; position: relative;
+  }
+  .checkbox-wrap input {
+    position: absolute; opacity: 0; width: 100%; height: 100%; cursor: pointer; z-index: 2;
+  }
+  .checkbox-box {
+    width: 20px; height: 20px; border-radius: 6px;
+    border: 2px solid var(--border); background: var(--bg-elev);
+    transition: all 0.2s; display: flex; align-items: center; justify-content: center;
+  }
+  .checkbox-box::after {
+    content: ''; width: 10px; height: 6px;
+    border-left: 2px solid white; border-bottom: 2px solid white;
+    transform: rotate(-45deg) scale(0); transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    margin-top: -2px;
+  }
+  .checkbox-wrap input:checked ~ .checkbox-box {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    border-color: transparent;
+    box-shadow: 0 0 12px rgba(99,102,241,0.5);
+  }
+  .checkbox-wrap input:checked ~ .checkbox-box::after {
+    transform: rotate(-45deg) scale(1);
+  }
+  .checkbox-wrap input:disabled ~ .checkbox-box {
+    opacity: 0.3; cursor: not-allowed;
+  }
+
+  .template-info { flex: 1; min-width: 0; }
+  .template-name { font-size: 14px; font-weight: 600; }
+  .template-thumb {
+    flex: 0 0 auto; width: 240px; height: 134px;
+    border-radius: 8px; overflow: hidden; align-self: center;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  }
+  .template-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* 無縮圖佔位：與有縮圖的列對齊，不靠左縮排 */
+  .template-thumb-empty {
+    display: flex; align-items: center; justify-content: center;
+    border-style: dashed; color: var(--text-dim); font-size: 12px;
+  }
+  .template-thumb-empty::after { content: '無縮圖'; }
+  /* 中/英 滑塊切換 */
+  .lang-switch { display:flex; align-items:center; gap:8px; margin-left:8px; user-select:none; }
+  .lang-label { font-size:13px; color:var(--text-dim); cursor:pointer; }
+  .lang-label.active { color:var(--accent); font-weight:600; }
+  .switch { position:relative; width:46px; height:24px; cursor:pointer; }
+  .switch input { opacity:0; width:0; height:0; }
+  .slider { position:absolute; inset:0; background:#2a2b3a; border-radius:999px; transition:0.25s; border:1px solid #3a3b52; }
+  .slider::before { content:''; position:absolute; width:18px; height:18px; left:2px; top:2px; border-radius:50%; background:#7aa2ff; transition:0.25s; }
+  .switch input:checked + .slider { background:#262a45; border-color:#7aa2ff; }
+  .switch input:checked + .slider::before { transform:translateX(22px); }
+  .file-root {
+    font-size: 10px; color: var(--accent-2); background: rgba(99,102,241,0.12);
+    padding: 1px 5px; border-radius: 4px; margin-left: 2px;
+  }
+  .template-desc {
+    margin-top: 6px; font-size: 12.5px; color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .template-files {
+    margin-top: 8px; font-size: 11.5px; color: var(--text-dim);
+    line-height: 1.6; font-family: ui-monospace, monospace;
+  }
+  .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 6px;
+    font-size: 11px; font-weight: 600; margin-left: 8px;
+  }
+  .badge.ready { background: rgba(16,185,129,0.15); color: var(--green); }
+  .badge.missing { background: rgba(245,158,11,0.15); color: var(--amber); }
+  .badge.api { background: rgba(236,72,153,0.15); color: #f472b6; }
+  .badge.local { background: rgba(99,102,241,0.15); color: var(--accent-2); }
+
+  .pop-score {
+    font-size: 10px; color: var(--text-dim); margin-left: 8px;
+  }
+
+  /* Bottom download bar */
+  .download-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(11,13,20,0.92); backdrop-filter: blur(24px);
+    border-top: 1px solid var(--border);
+    z-index: 1000;
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .download-bar.expanded { box-shadow: 0 -8px 40px rgba(0,0,0,0.4); }
+
+  .bar-main {
+    max-width: 1200px; margin: 0 auto;
+    padding: 14px 40px;
+    display: flex; align-items: center; gap: 20px;
+    cursor: pointer;
+  }
+  .bar-progress-wrap { flex: 1; }
+  .bar-label { font-size: 12px; color: var(--text-dim); margin-bottom: 6px; display: flex; justify-content: space-between; }
+  .bar-label .expand-hint { color: var(--accent-2); }
+  .progress-track {
+    height: 10px; background: var(--bg-elev); border-radius: 999px; overflow: hidden;
+    position: relative;
+  }
+  .progress-fill {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+    background-size: 200% 100%;
+    border-radius: 999px; transition: width 0.4s ease;
+    animation: shimmer 2s linear infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+  .bar-actions { display: flex; gap: 10px; align-items: center; }
+
+  /* Expanded queue list */
+  .bar-expand {
+    max-width: 1200px; margin: 0 auto;
+    padding: 0 40px; max-height: 300px; overflow-y: auto;
+    display: none;
+    border-top: 1px solid var(--border);
+  }
+  .download-bar.expanded .bar-expand { display: block; padding-bottom: 16px; }
+  .queue-item {
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 12px; font-size: 12px; flex-wrap: wrap;
+  }
+  .queue-item:last-child { border-bottom: none; }
+  .queue-item .q-name { flex: 1; color: var(--text); font-family: ui-monospace, monospace; font-size: 11.5px; }
+  .queue-item .q-pct { width: 60px; text-align: right; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+  .queue-item .q-status {
+    width: 50px; text-align: center; padding: 2px 6px; border-radius: 4px;
+    font-size: 10px; font-weight: 600;
+  }
+  .q-status.downloading { background: rgba(99,102,241,0.15); color: var(--accent-2); }
+  .q-status.done { background: rgba(16,185,129,0.15); color: var(--green); }
+  .q-status.failed, .q-status.blocked { background: rgba(239,68,68,0.15); color: var(--red); }
+  .q-status.pending { background: rgba(245,158,11,0.15); color: var(--amber); }
+  .q-status.cancelled, .q-status.skipped { background: rgba(122,129,153,0.15); color: var(--text-dim); }
+
+  .empty, .loading { text-align: center; padding: 60px; color: var(--text-dim); }
+  .loading .scan-icon { animation: pulse 1.5s ease-in-out infinite; display: inline-block; }
+  @keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.15); opacity: 0.7; } }
+
+  /* 動態「...」：掃描等待時逐點閃爍，避免無聊 */
+  .dots { display: inline-block; margin-left: 2px; }
+  .dots span { display: inline-block; opacity: 0; animation: dotBlink 1.2s infinite ease-in-out; }
+  .dots span:nth-child(1) { animation-delay: 0s; }
+  .dots span:nth-child(2) { animation-delay: 0.25s; }
+  .dots span:nth-child(3) { animation-delay: 0.5s; }
+  @keyframes dotBlink { 0%,100% { opacity: 0; } 50% { opacity: 1; } }
+
+  .badge.new { background: rgba(99,102,241,0.2); color: #c4b5fd; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1><span class="bolt">⚡</span><span data-i18n="appTitle">加速模型下載器</span></h1>
+  <div class="subtitle" data-i18n="subtitle">aria2 16 執行緒 × hf-mirror 雙鏡像競速 · 即時佇列</div>
+  <div class="toolbar">
+    <input class="search" id="search" data-i18n-ph="searchPh" placeholder="搜尋範本名稱…" />
+    <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-dim);cursor:pointer;user-select:none" data-i18n-ti="filterReadyTi">
+      <input type="checkbox" id="filter-ready" onchange="render()" style="accent-color:var(--accent);width:16px;height:16px;cursor:pointer">
+      <span data-i18n="filterReady">已就緒</span>
+    </label>
+    <button class="btn" onclick="refresh()">🔄 <span data-i18n="rescan">重新掃描</span></button>
+    <button class="btn" onclick="openModels()">📂 <span data-i18n="openModels">模型資料夾</span></button>
+    <button class="btn" id="btn-extra-dirs" onclick="openExtraDirs()" style="display:none">📂 <span data-i18n="openExtra">額外模型目錄</span></button>
+    <label class="lang-switch" title="切換中英文介面">
+      <span class="lang-label" id="lang-en" data-i18n="langEn">EN</span>
+      <span class="switch"><input type="checkbox" id="lang-toggle" onchange="toggleLang()"><span class="slider"></span></span>
+      <span class="lang-label" id="lang-zh" data-i18n="langZh">中</span>
+    </label>
+  </div>
+  <div class="env-banner" id="env-banner"></div>
+  <div class="stats">
+    <span class="stat-pill"><span class="dot green"></span><span id="ready-count">0</span> <span data-i18n="readyStat">已就緒</span></span>
+    <span class="stat-pill"><span class="dot amber"></span><span id="missing-count">0</span> <span data-i18n="missingStat">待下載</span></span>
+    <span class="stat-pill"><span data-i18n="totalLabel">共</span> <span id="total-count">0</span> <span data-i18n="totalStat">個範本</span></span>
+    <span class="stat-pill" id="new-pill" style="display:none"><span class="dot green"></span>🆕 <span data-i18n="newStat">新增</span> <span id="new-count">0</span></span>
+    <span class="stat-pill" id="comfy-pill"><span class="dot amber"></span><span id="comfy-text">ComfyUI …</span></span>
+    <span class="stat-pill" id="thumb-pill" style="display:none"><span class="dot amber"></span>🖼 <span id="thumb-text" data-i18n="thumbsUp">縮圖更新中…</span></span>
+    <span class="stat-pill" id="translate-pill" style="display:none"><span class="dot amber"></span>🈯 <span id="translate-text"></span></span>
+  </div>
+</div>
+
+<div class="container" id="list">
+  <div class="loading" id="loading-default"><span class="scan-icon">⚡</span> <span data-i18n="scanning">掃描中</span><span class="dots"><span>.</span><span>.</span><span>.</span></span></div>
+</div>
+
+<div class="download-bar" id="dl-bar">
+  <div class="bar-main" onclick="toggleExpand()">
+    <div class="bar-progress-wrap">
+      <div class="bar-label">
+        <span id="bar-text" data-i18n="queueTitle">下載佇列</span>
+        <span class="expand-hint" data-i18n="clickExpand">點擊展開 ▾</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="bar-fill"></div></div>
+    </div>
+    <div class="bar-actions">
+      <button class="btn btn-danger" onclick="event.stopPropagation(); cancelQueue()">✕ <span data-i18n="cancelAll">取消全部</span></button>
+      <button class="btn" onclick="event.stopPropagation(); clearDone()"><span data-i18n="clearDone">清除已完成</span></button>
+    </div>
+  </div>
+  <div class="bar-expand" id="bar-expand"></div>
+</div>
+
+<script>
+// Auto-detect API base: ComfyUI embedded vs standalone server
+const API_BASE = location.port === '8188' ? '/api/accelerated-downloader' : '/api';
+
+// ================= 雙語介面（中 / EN 動態左右滑塊切換） =================
+const I18N = {
+  zh: {
+    appTitle:'Comfyui Model Manager', subtitle:'aria2 16 執行緒 × hf-mirror 雙鏡像競速 · 即時佇列',
+    searchPh:'搜尋範本名稱…', filterReady:'已就緒', filterReadyTi:'勾選：只顯示已就緒（缺檔 0）的範本；取消：顯示全部',
+    rescan:'重新掃描', openModels:'模型資料夾', openExtra:'額外模型目錄', langZh:'中', langEn:'EN',
+    readyStat:'已就緒', missingStat:'待下載', totalStat:'個範本', newStat:'新增', totalLabel:'共',
+    comfyRun:'ComfyUI 執行中', comfyOff:'ComfyUI 未啟動', thumbsUp:'縮圖更新中…', thumbsOk:'縮圖已更新',
+    scanFirst:'首次掃描較耗時（檢查所有本地範本與所需檔案）', scanning:'掃描中',
+    scanFail:'掃描失敗', noMatch:'沒有符合的範本', itemsCount:'{n} 個',
+    missingCount:'缺 {n}', readyCount:'就緒 {n}', badgeMissing:'缺 {n}',
+    badgeReady:'✓ 就緒', badgeNew:'🆕 新範本',
+    zhPending:'（中文翻譯更新中）', noThumb:'無縮圖', noThumbTi:'此範本無官方縮圖',
+    incomplete:'（不完整', sizeMismatch:'容量不符',
+    addQueue:'➕ 加入下載清單 ({n})', queueTitle:'下載佇列', clickExpand:'點擊展開 ▾',
+    cancelAll:'取消全部', clearDone:'清除已完成', queueEmpty:'佇列為空', noItems:'尚無下載項目',
+    qDownloading:'下載中', qDone:'完成', qFailed:'失敗', qPending:'等待中', qCancelled:'已取消',
+    qSkipped:'跳過', qBlocked:'暫停', aria2Miss:'⚠️ 找不到 aria2c，請先安裝（winget install aria2）',
+    extraDirNone:'未設定額外模型目錄', addFail:'加入失敗', openModelsFail:'開啟模型資料夾失敗',
+    openExtraFail:'開啟額外模型目錄失敗', barBusy:'下載中', barHasErr:'有失敗項目', barReady:'就緒',
+    cancelOneTi:'取消此檔案', retryTi:'重試', removeTi:'移除',
+    translating:'新範本翻譯中 {d}/{p}', translated:'翻譯完成',
+    cats: { t2i:'🖼️ 文生圖片', i2i:'🖼️ 圖生圖片', t2v:'🎬 文生影片', i2v:'🎬 圖生影片',
+            edit:'✏️ 圖片編輯', '3d':'🧊 3D 生成', audio:'🎵 音訊 / 音樂',
+            aux:'🔧 輔助 / 預處理', api_img:'🌐 API 圖像', api_vid:'🌐 API 影片', api_other:'🌐 API 其他' }
+  },
+  en: {
+    appTitle:'Comfyui Model Manager', subtitle:'aria2 16 threads × hf-mirror dual-mirror racing · live queue',
+    searchPh:'Search template name…', filterReady:'Ready only', filterReadyTi:'Checked: show only ready (0 missing) templates; unchecked: show all',
+    rescan:'Rescan', openModels:'Models Folder', openExtra:'Extra Model Dirs', langZh:'中', langEn:'EN',
+    readyStat:'Ready', missingStat:'To download', totalStat:'templates', newStat:'New', totalLabel:'Total',
+    comfyRun:'ComfyUI running', comfyOff:'ComfyUI not running', thumbsUp:'Updating thumbnails…', thumbsOk:'Thumbnails updated',
+    scanFirst:'First scan takes longer (checking all local templates & required files)', scanning:'Scanning',
+    scanFail:'Scan failed', noMatch:'No matching templates', itemsCount:'{n}',
+    missingCount:'Missing {n}', readyCount:'Ready {n}', badgeMissing:'Missing {n}',
+    badgeReady:'✓ Ready', badgeNew:'🆕 New',
+    zhPending:'(Chinese translation pending)', noThumb:'No thumbnail', noThumbTi:'No official thumbnail for this template',
+    incomplete:'(incomplete', sizeMismatch:'size mismatch',
+    addQueue:'➕ Add to queue ({n})', queueTitle:'Download queue', clickExpand:'Click to expand ▾',
+    cancelAll:'Cancel all', clearDone:'Clear finished', queueEmpty:'Queue is empty', noItems:'No items yet',
+    qDownloading:'Downloading', qDone:'Done', qFailed:'Failed', qPending:'Waiting', qCancelled:'Cancelled',
+    qSkipped:'Skipped', qBlocked:'Paused', aria2Miss:'⚠️ aria2c not found. Install first (winget install aria2)',
+    extraDirNone:'No extra model directories configured', addFail:'Add failed', openModelsFail:'Failed to open models folder',
+    openExtraFail:'Failed to open extra model dirs', barBusy:'Downloading', barHasErr:'Some items failed', barReady:'Ready',
+    cancelOneTi:'Cancel this file', retryTi:'Retry', removeTi:'Remove',
+    translating:'Translating new templates {d}/{p}', translated:'Translations updated',
+    cats: { t2i:'🖼️ Text-to-Image', i2i:'🖼️ Image-to-Image', t2v:'🎬 Text-to-Video', i2v:'🎬 Image-to-Video',
+            edit:'✏️ Image Editing', '3d':'🧊 3D Generation', audio:'🎵 Audio / Music',
+            aux:'🔧 Tools / Preprocessing', api_img:'🌐 API Images', api_vid:'🌐 API Videos', api_other:'🌐 API Other' }
+  }
+};
+
+// 預設語言：有記錄用記錄；沒有記錄依系統語言——中文（簡/繁）→ 中文介面，其他一律英文介面
+let LANG = (function () {
+  const saved = localStorage.getItem('dl-lang');
+  if (saved === 'zh' || saved === 'en') return saved;
+  return /^zh\b/i.test(navigator.language || '') ? 'zh' : 'en';
+})();
+function T(key, ...args) {
+  let s = (I18N[LANG] && I18N[LANG][key]) || I18N.zh[key] || key;
+  for (const a of args) s = s.replace('{n}', a);
+  return s;
+}
+function catName(key) { return (I18N[LANG].cats[key] || I18N.zh.cats[key] || key); }
+function applyI18n() {
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = T(el.dataset.i18n); });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => { el.placeholder = T(el.dataset.i18nPh); });
+  document.querySelectorAll('[data-i18n-ti]').forEach(el => { el.title = T(el.dataset.i18nTi); });
+  const zh = document.getElementById('lang-zh'), en = document.getElementById('lang-en');
+  if (zh) zh.classList.toggle('active', LANG === 'zh');
+  if (en) en.classList.toggle('active', LANG === 'en');
+  const tg = document.getElementById('lang-toggle');
+  if (tg) tg.checked = (LANG === 'zh');  // 滑塊向右（勾選）= 右側「中」
+}
+function toggleLang() {
+  setLang(document.getElementById('lang-toggle').checked ? 'zh' : 'en');
+}
+function setLang(l) {
+  LANG = l;
+  localStorage.setItem('dl-lang', l);
+  applyI18n();
+  render();          // 範本列（分類名/描述/徽章）依語言重繪
+  if (typeof renderQueue === 'function') renderQueue();
+  if (typeof updateEnvBanner === 'function') updateEnvBanner();
+  if (typeof updateThumbPill === 'function') updateThumbPill();
+}
+applyI18n();
+
+// HTML 轉義：所有來自範本 JSON / 佇列的動態字串先轉義再插入
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c => (
+    {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]
+  ));
+}
+
+// 热度评分（基于模型家族知名度）
+function popScore(title) {
+  const t = title.toLowerCase();
+  let s = 10;
+  if (t.includes('flux')) s += 50;
+  if (t.includes('wan')) s += 45;
+  if (t.includes('sdxl') || t.includes('sd3')) s += 35;
+  if (t.includes('hunyuan')) s += 30;
+  if (t.includes('krea')) s += 25;
+  if (t.includes('ltx')) s += 20;
+  if (t.includes('3d') || t.includes('hunyuan3d')) s += 15;
+  if (t.includes('sam') || t.includes('segment')) s += 15;
+  if (t.includes('depth') || t.includes('controlnet')) s += 12;
+  if (t.startsWith('api_')) s += 20; // API 範本通常受歡迎
+  if (t.includes('upscale')) s += 10;
+  if (t.includes('remove') || t.includes('birefnet')) s += 10;
+  return s;
+}
+
+// 美化标题
+function prettyTitle(title) {
+  return title
+    .replace(/^(template|api)[_\-]/i, '')
+    .replace(/[_-]/g, ' ')
+    .replace(/\b\w/g, c => c.toUpperCase());
+}
+
+// 分類：依官方介紹（description）＋標題重新歸類（回傳 key，介面依語言顯示分類名）
+function categorize(t) {
+  const title = (t.title || '').toLowerCase();
+  const desc = (t.description || '').toLowerCase();
+  if (t.is_api) {
+    if (/(video|v2v|i2v|t2v)/.test(title)) return 'api_vid';
+    if (/(image|edit|t2i|i2i|swap)/.test(title)) return 'api_img';
+    return 'api_other';
+  }
+  const hasVideoTitle = /(video|i2v|t2v|flf2v|vace|animate|motion|character)/.test(title);
+  // 1. 音訊／音樂（含 video 的標題不算，避免「同步音訊」的影片誤入）
+  if (!hasVideoTitle) {
+    if (/(audio|music|song|cover|tts|speech)/.test(title)) return 'audio';
+    if (/(generates audio\/music from text|complete songs|music style and lyrics|from a music caption|reference audio|preserving melody|melody, harmony, vocals)/.test(desc)) return 'audio';
+  }
+  // 2. 3D 生成（只看標題）
+  if (/(3d|mesh|gaussian|splat|geometry|to model)/.test(title)) return '3d';
+  // 3. 分析／預處理／工具（標題強模式，先於生成規則）
+  if (/(caption|detect|segment|estimat|pose map|skeleton|bounding box)/.test(title)) return 'aux';
+  if (title.includes('frame') && !title.includes('frame to video')) return 'aux';
+  if (/(prompt|select|merge|stitch|index)/.test(title)) return 'aux';
+  if (title.includes('video') && title.includes('upscale')) return 'aux';
+  // 4. 圖片調整／濾鏡
+  if (/(blur|sharpen|sharp|brightness|contrast|balance|curves|levels|channel|hue|saturat|grain|glow|chromatic|unsharp|adjust|crop|split|tile|edge)/.test(title)) return 'aux';
+  if (/(gpu fragment shader|real-time gpu|gpu shader)/.test(desc)) return 'aux';
+  // 5. 影片（先分文生影片）
+  if (hasVideoTitle || /(frame to video|canny to video|depth to video|pose to video|last frame)/.test(title)) {
+    if (/(text to video|t2v|from text)/.test(title)) return 't2v';
+    return 'i2v';
+  }
+  // 6. 圖片編輯
+  if (/(edit|inpaint|outpaint|remove|layers|erase|replace)/.test(title)) return 'edit';
+  if (title.includes('image') && title.includes('upscale')) return 'edit';
+  // 7. 文生圖片（排除風格參考類 → 屬圖生圖片）
+  if (!/(style|reference)/.test(title) &&
+      (/(text to image|t2i|txt2img)/.test(title) ||
+       /(generates images from text|generates image from text|from text prompts)/.test(desc))) return 't2i';
+  // 8. 圖生圖片（條件生成）
+  if (/(canny|control|pose to image|depth to image|style|reference|image to image|i2i|img2img|to image)/.test(title)) return 'i2i';
+  return 'aux';
+}
+
+let allTemplates = [];
+let selected = new Set();
+
+// 首次掃描（頁面載入）顯示「首次掃描較耗時」，之後的重新掃描顯示「掃描中」；
+// 兩者都帶動態「...」
+function showLoading(text) {
+  document.getElementById('list').innerHTML =
+    `<div class="loading" style="padding:80px">
+      <div class="scan-icon" style="font-size:48px;margin-bottom:16px">🔍</div>
+      <div style="font-size:16px">${text}<span class="dots"><span>.</span><span>.</span><span>.</span></span></div>
+    </div>`;
+}
+
+let refreshing = false;
+async function refresh() {
+  // 防抖：上一次掃描未完成時跳過重複觸發（多個輪詢同時要求重掃，避免頁面反覆閃爍）
+  if (refreshing) return;
+  refreshing = true;
+  showLoading(T('scanning'));
+  try {
+    const r = await fetch(`${API_BASE}/refresh`, { method: 'POST' });
+    const data = await r.json();
+    if (data.error) {
+      document.getElementById('list').innerHTML = '<div class="empty">' + esc(T('scanFail')) + ': ' + esc(data.error) + '</div>';
+      return;
+    }
+    allTemplates = data.templates || [];
+    updateStats();
+    showNewCount(data.new_count || 0);
+    render();
+  } catch (e) {
+    document.getElementById('list').innerHTML = '<div class="empty">' + esc(T('scanFail')) + ': ' + esc(e.message) + '</div>';
+  } finally {
+    refreshing = false;
+  }
+}
+
+function updateStats() {
+  document.getElementById('ready-count').textContent = allTemplates.filter(t => t.missing_count === 0).length;
+  document.getElementById('missing-count').textContent = allTemplates.filter(t => t.missing_count > 0).length;
+  document.getElementById('total-count').textContent = allTemplates.length;
+}
+
+function showNewCount(n) {
+  const pill = document.getElementById('new-pill');
+  if (n > 0) {
+    pill.style.display = 'inline-flex';
+    document.getElementById('new-count').textContent = n;
+  } else {
+    pill.style.display = 'none';
+  }
+}
+
+function render() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const readyOnly = document.getElementById('filter-ready').checked;
+  let filtered = allTemplates.filter(t => {
+    if (q && !t.title.toLowerCase().includes(q)) return false;
+    if (readyOnly && t.missing_count !== 0) return false;
+    return true;
+  });
+
+  // 固定分类顺序
+  const CAT_ORDER = ['t2i','i2i','t2v','i2v','edit','3d','audio','aux','api_img','api_vid','api_other'];
+
+  const groups = {};
+  for (const t of filtered) {
+    const cat = categorize(t);
+    (groups[cat] = groups[cat] || []).push(t);
+  }
+  // 分类内按标题首字母排序
+  for (const cat in groups) {
+    groups[cat].sort((a, b) => prettyTitle(a.title).localeCompare(prettyTitle(b.title)));
+  }
+
+  // 按固定顺序排列分类
+  const sortedCats = Object.entries(groups).sort((a, b) => {
+    const ia = CAT_ORDER.indexOf(a[0]);
+    const ib = CAT_ORDER.indexOf(b[0]);
+    return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+  });
+
+  let html = '';
+  for (const [cat, items] of sortedCats) {
+    const nMissing = items.filter(t=>t.missing_count>0).length;
+    const nReady = items.length - nMissing;
+    html += `<div class="category collapsed">
+      <div class="category-head" onclick="this.parentElement.classList.toggle('collapsed')">
+        <div class="category-title">${catName(cat)}</div>
+        <div class="category-meta">
+          <span>${T('itemsCount', items.length)}</span>
+          ${nMissing?`<span><span class="dot amber"></span> ${T('missingCount', nMissing)}</span>`:''}
+          ${nReady?`<span><span class="dot green"></span> ${T('readyCount', nReady)}</span>`:''}
+          <span class="chevron">▼</span>
+        </div>
+      </div>`;
+    html += '<div class="category-body">';
+    for (const t of items) {
+      const hasMissing = t.missing_count > 0;
+      const tid = t.file;
+      // 描述依語言：中文介面用中文（官方無中文，由本機翻譯維護；缺譯回退英文並標示），英文介面用官方英文
+      const desc = LANG === 'zh' ? (t.description_zh || t.description || '')
+                                  : (t.description || t.description_zh || '');
+      const zhFb = LANG === 'zh' && !t.description_zh && t.description;
+      const ptitle = prettyTitle(t.title);
+      html += `<div class="template ${hasMissing?'':'ready'}">
+        <div class="checkbox-wrap">
+          <input type="checkbox" data-file="${esc(tid)}" ${hasMissing?'':'disabled'}
+                 onchange="toggleSelect('${esc(tid)}', this.checked)" />
+          <div class="checkbox-box"></div>
+        </div>
+        ${t.thumb
+          ? `<div class="template-thumb"><img src="${esc(t.thumb)}" alt="" loading="lazy" onerror="this.style.display='none';this.closest('.template-thumb').classList.add('template-thumb-empty')"></div>`
+          : `<div class="template-thumb template-thumb-empty" title="${esc(T('noThumbTi'))}"></div>`}
+        <div class="template-info">
+          <div class="template-name">
+            ${esc(ptitle)}
+            ${hasMissing
+              ? `<span class="badge missing">${T('badgeMissing', t.missing_count)}</span>`
+              : `<span class="badge ready">${T('badgeReady')}</span>`}
+            ${t.is_new ? `<span class="badge new">${T('badgeNew')}</span>` : ''}
+          </div>
+          ${desc ? `<div class="template-desc">${esc(desc)}${zhFb?` <span style="color:var(--amber)">${esc(T('zhPending'))}</span>`:''}</div>` : ''}
+          ${t.models && t.models.length ? `<div class="template-files">${t.models.map(m => {
+            const isMiss = t.missing.some(mm => mm.name === m.name);
+            const size = m.disk_size_gb ? `${m.disk_size_gb}GB` : (m.remote_size_gb ? `${m.remote_size_gb}GB` : (m.size_gb ? `${m.size_gb}GB` : ''));
+            const sizeStr = size ? ` <span style="color:var(--text-dim)">(${size})</span>` : '';
+            // 標示檔案找到的位置（主 models / 額外設定目錄）
+            const root = m.root ? ` <span class="file-root" title="${esc(m.root)}">${esc(m.root === 'models' ? 'models' : m.root)}</span>` : '';
+            const note = m.incomplete ? ` <span style="color:var(--red)">${esc(T('incomplete'))}${m.size_mismatch?`：${esc(T('sizeMismatch'))}`:''}）</span>` : '';
+            return isMiss ? `· <span style="color:var(--amber)">✗ ${esc(m.name)}</span>${sizeStr}${note}` : `· <span style="color:var(--green)">✓ ${esc(m.name)}</span>${sizeStr}${root}`;
+          }).join('<br>')}</div>` : ''}
+        </div>
+      </div>`;
+    }
+    html += '</div></div>';
+  }
+  if (!filtered.length) html = '<div class="empty">' + esc(T('noMatch')) + '</div>';
+  document.getElementById('list').innerHTML = html;
+  updateAddBtn();
+}
+
+function toggleSelect(file, checked) {
+  if (checked) selected.add(file); else selected.delete(file);
+  updateAddBtn();
+}
+
+function updateAddBtn() {
+  // If there are selected items, show a floating "add to queue" button
+  let bar = document.getElementById('add-queue-bar');
+  if (selected.size > 0) {
+    if (!bar) {
+      bar = document.createElement('div');
+      bar.id = 'add-queue-bar';
+      bar.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#6366f1,#a855f7);padding:14px 28px;border-radius:999px;cursor:pointer;font-weight:600;box-shadow:0 8px 32px rgba(99,102,241,0.5);z-index:999;transition:all 0.2s;';
+      bar.onclick = addToQueue;
+      document.body.appendChild(bar);
+    }
+    bar.textContent = T('addQueue', selected.size);
+  } else if (bar) {
+    bar.remove();
+  }
+}
+
+async function addToQueue() {
+  const files = [];
+  const seen = new Set();
+  for (const t of allTemplates) {
+    if (!selected.has(t.file)) continue;
+    for (const m of t.missing) {
+      if (!seen.has(m.name)) { seen.add(m.name); files.push(m); }
+    }
+  }
+  if (!files.length) return;
+  try {
+    const r = await fetch(`${API_BASE}/queue/add`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ items: files })
+    });
+    const data = await r.json();
+    selected.clear();
+    document.querySelectorAll('.checkbox-wrap input:checked').forEach(cb => cb.checked = false);
+    updateAddBtn();
+    pollQueue();
+  } catch (e) { alert(T('addFail') + ': ' + e.message); }
+}
+
+function toggleExpand() {
+  document.getElementById('dl-bar').classList.toggle('expanded');
+}
+
+async function cancelQueue() {
+  await fetch(`${API_BASE}/queue/cancel`, { method: 'POST' });
+  pollQueue();
+}
+
+async function clearDone() {
+  await fetch(`${API_BASE}/queue/clear-done`, { method: 'POST' });
+  pollQueue();
+}
+
+function fmtEta(sec) {
+  if (sec == null || sec < 0 || !isFinite(sec)) return '';
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${m}:${String(s).padStart(2, '0')}`;
+}
+
+async function cancelOne(name) {
+  await fetch(`${API_BASE}/queue/cancel-one`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name })
+  });
+  pollQueue();
+}
+
+async function retryOne(name) {
+  await fetch(`${API_BASE}/queue/retry`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name })
+  });
+  pollQueue();
+}
+
+async function removeOne(name) {
+  await fetch(`${API_BASE}/queue/remove`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name })
+  });
+  pollQueue();
+}
+
+async function openModels() {
+  try {
+    const r = await fetch(`${API_BASE}/open-models`);
+    const d = await r.json();
+    if (d && d.ok === false) alert(T('openModelsFail') + ': ' + (d.error || ''));
+  } catch (e) {
+    alert(T('openModelsFail') + ': ' + e.message);
+  }
+}
+
+async function openExtraDirs() {
+  // 開啟 extra_model_paths.yaml 設定的全部額外模型目錄（比對與下載皆涵蓋）
+  try {
+    const r = await fetch(`${API_BASE}/open-extra-dirs`);
+    const d = await r.json();
+    if (d && d.ok === false) alert(T('openExtraFail') + ': ' + (d.error || ''));
+  } catch (e) {
+    alert(T('openExtraFail') + ': ' + e.message);
+  }
+}
+
+let pollTimer = null;
+let prevDoneCount = 0;
+// 下載狀態 → 介面語言文字
+function qStatusName(st) {
+  return { downloading:T('qDownloading'), done:T('qDone'), error:T('qFailed'), pending:T('qPending'),
+           cancelled:T('qCancelled'), skipped:T('qSkipped'), blocked:T('qBlocked') }[st] || st;
+}
+function pollQueue() {
+  const bar = document.getElementById('dl-bar');
+  if (pollTimer) clearInterval(pollTimer);
+  async function tick() {
+    try {
+      const r = await fetch(`${API_BASE}/queue`);
+      const s = await r.json();
+      if (!s.ok) return;
+      if (s.total === 0) {
+        document.getElementById('bar-text').textContent = T('queueEmpty');
+        document.getElementById('bar-fill').style.width = '0%';
+        document.getElementById('bar-expand').innerHTML = '<div style="text-align:center;padding:20px;color:var(--text-dim)">' + esc(T('noItems')) + '</div>';
+        return;
+      }
+      document.getElementById('bar-fill').style.width = s.pct + '%';
+      let barText = `[${s.done}/${s.total}] ${s.downloading ? T('barBusy') + '…' : s.failed ? T('barHasErr') : T('barReady')} · ${s.pct}%`;
+      if (s.total_size_gb) barText += ` · ${s.total_size_gb}GB`;
+      if (s.eta_sec) barText += ` · ETA ${fmtEta(s.eta_sec)}`;
+      document.getElementById('bar-text').textContent = barText;
+
+      // Expanded list
+      const exp = document.getElementById('bar-expand');
+      exp.innerHTML = s.items.map(it => {
+        let actions = '';
+        if (it.status === 'downloading') {
+          actions = `<button class="btn btn-danger" style="padding:3px 10px;font-size:10px" onclick="cancelOne('${esc(it.name)}')" title="${esc(T('cancelOneTi'))}">✕</button>`;
+        }
+        if (it.status === 'error' || it.status === 'cancelled') {
+          actions = `<button class="btn" style="padding:3px 10px;font-size:10px" onclick="retryOne('${esc(it.name)}')" title="${esc(T('retryTi'))}">↻</button>`;
+        }
+        if (it.status === 'done' || it.status === 'error' || it.status === 'cancelled') {
+          actions += `<button class="btn" style="padding:3px 10px;font-size:10px" onclick="removeOne('${esc(it.name)}')" title="${esc(T('removeTi'))}">🗑</button>`;
+        }
+        const err = it.error
+          ? `<div style="flex:1 0 100%;color:#fca5a5;font-size:10px;word-break:break-all">⚠ ${esc(it.error)}</div>`
+          : '';
+        return `<div class="queue-item">
+          <span class="q-status ${esc(it.status)}">${esc(qStatusName(it.status))}</span>
+          <span class="q-name">${esc(it.name)}</span>
+          <span class="q-pct">${it.pct || 0}%</span>
+          ${it.speed ? `<span style="color:var(--text-dim);width:80px">${esc(it.speed)}</span>` : '<span style="width:80px"></span>'}
+          ${actions ? `<span style="display:flex;gap:6px">${actions}</span>` : ''}
+          ${err}
+        </div>`;
+      }).join('');
+
+      // Auto-rescan when progress advances (new files finished)
+      if (s.done > prevDoneCount) {
+        prevDoneCount = s.done;
+        refresh();
+      }
+      // 注意：不可在「佇列排空」時重置 prevDoneCount 再掃一次——
+      // 會讓 done > 0 > prevDoneCount 每次 tick 都成立，造成 refresh 無限循環（頁面一直閃爍）。
+    } catch (e) {}
+  }
+  tick();
+  pollTimer = setInterval(tick, 800);
+}
+
+async function envCheck() {
+  try {
+    const r = await fetch(`${API_BASE}/env-check`);
+    const d = await r.json();
+    const banner = document.getElementById('env-banner');
+    if (!d.aria2c_installed && !d.aria2c) {
+      banner.className = 'env-banner';
+      banner.style.display = 'block';
+      banner.innerHTML = esc(T('aria2Miss')) + ': <code>winget install aria2.aria2</code> 或 <code>brew install aria2</code>';
+    } else {
+      banner.style.display = 'none';
+    }
+    const pill = document.getElementById('comfy-pill');
+    if (pill) {
+      pill.innerHTML = d.comfyui_running
+        ? `<span class="dot green"></span>${esc(T('comfyRun'))}`
+        : `<span class="dot amber"></span>${esc(T('comfyOff'))}`;
+    }
+    // 有額外模型目錄（extra_model_paths.yaml）時才顯示開啟按鈕
+    const btnExtra = document.getElementById('btn-extra-dirs');
+    if (btnExtra) {
+      const extra = d.extra_dirs || [];
+      btnExtra.style.display = extra.length ? '' : 'none';
+      if (extra.length) btnExtra.title = extra.join('\n');
+    }
+  } catch (e) {}
+}
+
+document.getElementById('search').addEventListener('input', render);
+envCheck();
+pollQueue();
+// 新範本縮圖自動更新狀態：更新中顯示狀態列，完成後自動重整
+let lastThumbsWorking = false;
+let thumbsLastChange = 0;
+async function pollThumbStatus() {
+  try {
+    const r = await fetch(`${API_BASE}/thumbs-status`);
+    const s = await r.json();
+    const pill = document.getElementById('thumb-pill');
+    if (s.working) {
+      lastThumbsWorking = true;
+      pill.style.display = '';
+      pill.innerHTML = `<span class="dot amber"></span>🖼 ${esc(T('thumbsUp'))} ${s.done}/${s.pending} …`;
+    } else if (lastThumbsWorking) {
+      lastThumbsWorking = false;
+      if (s.last_change > thumbsLastChange) {
+        thumbsLastChange = s.last_change;
+        pill.innerHTML = `<span class="dot green"></span>🖼 ${esc(T('thumbsOk'))}`;
+        refresh();  // 重新掃描 → 新縮圖、介紹、模型與容量全部刷新
+        setTimeout(() => { pill.style.display = 'none'; }, 2500);
+      } else {
+        pill.style.display = 'none';
+      }
+    } else {
+      thumbsLastChange = s.last_change;
+      pill.style.display = 'none';
+    }
+  } catch (e) {}
+}
+setInterval(pollThumbStatus, 3000);
+
+// 新範本自動翻譯狀態（en → zh）：工作中顯示狀態列，完成後重整（中文介紹立即顯示）
+let lastTransWorking = false;
+let transLastChange = 0;
+async function pollTranslateStatus() {
+  try {
+    const r = await fetch(`${API_BASE}/translate-status`);
+    const s = await r.json();
+    const pill = document.getElementById('translate-pill');
+    if (!pill) return;
+    if (s.working) {
+      lastTransWorking = true;
+      pill.style.display = '';
+      document.getElementById('translate-text').textContent =
+        (s.pending > 0 ? T('translating', s.done, s.pending) : T('translating', s.done, s.done + s.pending));
+    } else if (lastTransWorking) {
+      lastTransWorking = false;
+      if (s.last_change > transLastChange && s.done > 0) {
+        transLastChange = s.last_change;
+        document.getElementById('translate-text').textContent = T('translated');
+        refresh();  // 重新掃描 → 新範本的中文介紹、縮圖、模型與容量全部刷新
+        setTimeout(() => { pill.style.display = 'none'; }, 2500);
+      } else {
+        pill.style.display = 'none';
+      }
+    } else {
+      transLastChange = s.last_change;
+      pill.style.display = 'none';
+    }
+  } catch (e) {}
+}
+setInterval(pollTranslateStatus, 3000);
+
+// First fetch sizes (HEAD requests), then show list
+(async () => {
+  showLoading(T('scanFirst'));
+  try {
+    await fetch(`${API_BASE}/fetch-sizes`);
+  } catch (e) {}
+  // Load templates after sizes are ready
+  const r = await fetch(`${API_BASE}/templates`);
+  const data = await r.json();
+  allTemplates = data.templates || [];
+  updateStats();
+  showNewCount(data.new_count || 0);
+  render();
+})();
+</script>
+</body>
+</html>
