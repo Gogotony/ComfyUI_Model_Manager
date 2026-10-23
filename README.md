@@ -30,6 +30,20 @@ Deploying ComfyUI means pulling down **hundreds of GB** of models, and the offic
 - 💾 **Size verification** — compares local file size against the expected size, flags incomplete/corrupt downloads, and shows disk usage per model.
 - ✅ **Ready-state tracking** — templates marked ready are skipped on the next scan; only missing ones get re-checked.
 
+### How is this different from ComfyUI-Manager?
+
+[ComfyUI-Manager](https://github.com/ltdrdata/ComfyUI-Manager) is an excellent custom-node manager that also offers **optional** aria2 support — but it expects you to run your own aria2 RPC server (the official guide uses a Docker container) and set environment variables.
+
+| | ComfyUI-Manager | ComfyUI Model Manager |
+|---|---|---|
+| aria2 acceleration | Optional — you host the aria2 server | **Built-in, zero-config** (auto-downloads aria2c) |
+| Multi-connection split | Depends on your server setup | **16-thread automatic** |
+| Mirror racing | — | **hf-mirror dual-mirror** (fastest responds wins) |
+| Official template scan | — | Scans 116+ official templates, flags missing models |
+| Runs without ComfyUI | No (installed as a plugin) | **Yes — fully standalone** |
+
+They complement each other: **ComfyUI-Manager** keeps your custom nodes in order, **Model Manager** finds and fetches the models your workflows actually need — at maximum speed.
+
 ## 🖼️ Interface
 
 English overview (categories & stats):
