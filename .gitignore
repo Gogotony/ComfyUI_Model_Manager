@@ -7,3 +7,6 @@ __pycache__/
 
 # Thumbnail cache (auto re-downloaded by the server)
 thumbs/
+
+# Design workspace process files
+.creative-design/
