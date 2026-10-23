@@ -4,6 +4,8 @@
 
 > 🌏 [English README](README.md)
 
+![ComfyUI Model Manager 封面](screenshots/cover-zh.png)
+
 ![中文主介面](screenshots/screenshot-zh.png)
 
 ## ✨ 為什麼你需要它
