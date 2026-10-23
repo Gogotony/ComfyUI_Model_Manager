@@ -1,5 +1,12 @@
 # ⚡ ComfyUI Model Manager
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)
+![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)
+![ComfyUI](https://img.shields.io/badge/ComfyUI-Ready-blueviolet.svg)
+![aria2 16-thread](https://img.shields.io/badge/aria2-16x%20Accelerated-orange.svg)
+![Bilingual UI](https://img.shields.io/badge/UI-English%20%2F%20中文-green.svg)
+
 **Never hunt for missing models again.** ComfyUI Model Manager scans every official workflow template on your machine, tells you exactly which model files each one needs, and downloads the missing ones at maximum speed with aria2 multi-threading — all without starting ComfyUI.
 
 > 🌏 [繁體中文說明 (Traditional Chinese)](README_zh-TW.md)

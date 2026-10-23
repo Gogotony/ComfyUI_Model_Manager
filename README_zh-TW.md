@@ -1,5 +1,12 @@
 # ⚡ ComfyUI Model Manager（ComfyUI 模型管理器）
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)
+![平台](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)
+![ComfyUI](https://img.shields.io/badge/ComfyUI-Ready-blueviolet.svg)
+![aria2 16 執行緒](https://img.shields.io/badge/aria2-16x%20Accelerated-orange.svg)
+![雙語介面](https://img.shields.io/badge/UI-English%20%2F%20中文-green.svg)
+
 **再也不用手動找模型檔。** ComfyUI Model Manager 會掃描你機器上所有官方工作流範本，告訴你每個範本需要哪些模型檔案、哪些已齊全、哪些缺檔，並用 aria2 多執行緒以最高速度補齊——全程不需要啟動 ComfyUI。
 
 > 🌏 [English README](README.md)
